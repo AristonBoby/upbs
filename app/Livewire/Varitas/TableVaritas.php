@@ -17,7 +17,7 @@ class TableVaritas extends Component
     public $varitas;
     public $harga;
     public $kategori;
-    public $status=0;
+    public $status=1;
     public function render()
     {
         $kategori = tblkatVaritas::all();
@@ -37,11 +37,13 @@ class TableVaritas extends Component
 
     public function editModal($id)
     {
-        $this->varitasKategori = tblVaritas::where('id',$id)->first();
-        $this->id = $this->varitasKategori->varitas;
-        $this->kategori = $this->varitasKategori->tblkat_varitas_id;
-        $this->varitas = $this->varitasKategori->varitas;
-        $this->harga = $this->varitasKategori->harga;
+        $this->varitasKategori  = tblVaritas::where('id',$id)->first();
+        $this->id               = $this->varitasKategori->varitas;
+        $this->kategori         = $this->varitasKategori->tblkat_varitas_id;
+        $this->varitas          = $this->varitasKategori->varitas;
+        $this->harga            = $this->varitasKategori->harga;
+        $this->status           = $this->varitasKategori->status;
         dd($this->status);
+
     }
 }

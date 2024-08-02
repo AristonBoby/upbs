@@ -99,7 +99,7 @@
                             <label class="col-md-4">Status</label>
                             <div class="col-md-8">
                                 <div class="form-check form-switch">
-                                    <input wire:model.live='status' value="{{ $status }}"class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                                    <input wire:model.live='status' value="{{ $status }}" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" @if($status=='1' || $status===1) checked @endif>
                                     <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
                                 </div>
                             </div>

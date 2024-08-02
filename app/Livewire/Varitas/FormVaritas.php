@@ -32,6 +32,7 @@ class FormVaritas extends Component
             'varitas'           =>  $this->varVaritas,
             'harga'             =>  $this->varHarga,
             'tblkat_varitas_id' =>  $this->varKategori,
+            'status'            =>  $this->varStatus
         ]);
 
 

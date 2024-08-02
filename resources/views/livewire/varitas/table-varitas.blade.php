@@ -68,8 +68,8 @@
                     <h5 class="modal-title" id="staticBackdropLabel">Edit Varitas</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body text-sm-start">
-                    <form>
+                <form wire:submit="update">
+                    <div class="modal-body text-sm-start">
                         <div class="row">
                             <label class="col-form-label col-md-4">Nama Varitas</label>
                             <div class="col-md-8">
@@ -99,17 +99,17 @@
                             <label class="col-md-4">Status</label>
                             <div class="col-md-8">
                                 <div class="form-check form-switch">
-                                    <input wire:model.live='status' value="{{ $status }}" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" @if($status=='1' || $status===1) checked @endif>
-                                    <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
+                                    <input wire:model='status' value="{{ $status }}" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" @if($status=='1' || $status===1) checked @endif>
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">@if($status=='1' || $status===1) Aktif @endif @if($status=='0') Tidak Aktif @endif</label>
                                 </div>
                             </div>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Simpan</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

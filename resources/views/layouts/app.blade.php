@@ -54,4 +54,29 @@
         </div>
     </div>
 </body>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+      $(".number").keypress(function (e) {
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+          return false;
+        }
+      });
+    });
+
+</script>
+
+<script>
+    window.addEventListener('alert', event => {
+        Swal.fire({
+            text: event.detail.text,
+            title: event.detail.title,
+            icon: event.detail.icon,
+            showConfirmButton: false,
+            timer: event.detail.timer,
+            buttons: false,
+        });
+    });
+</script>
 </html>

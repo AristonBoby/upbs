@@ -13,6 +13,7 @@ class tblVaritas extends Model
         'varitas',
         'harga',
         'tblkat_varitas_id',
+        'status'
     ];
 
     public function tblkat ()

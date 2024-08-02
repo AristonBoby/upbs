@@ -37,7 +37,7 @@
                 </div>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <button class="btn btn-primary btn-sm">Simpan</button>
-                    <button class="btn btn-danger btn-sm">Batal</button>
+                    <button type="button" class="btn btn-danger btn-sm">Batal</button>
                 </div>
             </form>
         </div>

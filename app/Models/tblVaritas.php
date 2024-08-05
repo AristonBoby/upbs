@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class tblVaritas extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'varitas',
@@ -20,5 +21,5 @@ class tblVaritas extends Model
     {
         return $this->belongsTo('App\Models\tblkatVaritas','tblkat_varitas_id','id');
     }
-
+    protected $dates = ['deleted_at'];
 }

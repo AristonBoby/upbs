@@ -6,6 +6,7 @@ use App\Models\tblkatVaritas;
 use App\Models\tblVaritas;
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Livewire;
 
 class TableVaritas extends Component
 {
@@ -19,10 +20,11 @@ class TableVaritas extends Component
     public $kategori;
     public $status=1;
 
+
     public function render()
     {
-        $kategori = tblkatVaritas::all();
-        $query = tblVaritas::where('varitas','Like',"%{$this->search}%")->orderBy('created_at','desc')->paginate('10');
+        $kategori   = tblkatVaritas::all();
+        $query      = tblVaritas::where('varitas','Like',"%{$this->search}%")->orderBy('created_at','desc')->paginate('10');
         return view('livewire.varitas.table-varitas',['query'=>$query, 'kat'=>$kategori]);
     }
 
@@ -60,7 +62,14 @@ class TableVaritas extends Component
         } else {
             $this->dispatch('alertEdit',text:'Data gagal diperbarui !!!',icon:'danger',title:'Gagal',timer:2000);
         }
+    }
 
-
+    public function hapus()
+    {
+        $query  =   tblVaritas::find($this->id)->delete();
+        if($query)
+        {
+            $this->dispatch('alertDelete',text:'Data Berhasi di Hapus !!!',icon:'success',title:'Berhasil',timer:2000);
+        }
     }
 }

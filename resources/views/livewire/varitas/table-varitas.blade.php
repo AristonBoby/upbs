@@ -41,9 +41,9 @@
                             <button type="button" class="btn btn-sm btn-primary" wire:click="editModal('{{ $data->id }}')" data-bs-toggle="modal" data-bs-target="#mEdit">
                                 <i class="fa fa-edit"></i>
                             </button>
-                            <button type="button" class="btn btn-sm btn-danger" wire:click="editModal('{{ $data->id }}')" data-bs-toggle="modal" data-bs-target="#mHapus">
+                            <a href="javascript:void(0)" data-bs-toggle="modal" wire:click="editModal('{{ $data->id }}')" data-bs-target="#mHapus" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#mHapus">
                                 <i class="fa fa-trash"></i>
-                            </button>
+                            </a>
                         </td>
                     </tr>
                     @empty
@@ -116,6 +116,25 @@
         </div>
     </div>
 
+    <!-- Modal Hapus -->
+    <div wire:ignore.self class="modal fade" id="mHapus" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Hapus Varitas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class=" modal-header">
+                    <span class="col-md-12">Apakah Anda Ingin Menghapus data Varitas</span>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger btn-sm rounded-0" wire:click='hapus'><i class="fa fa-trash-alt"></i> Hapus</button>
+                    <button class="btn btn-secondary btn-sm rounded-0"  data-bs-dismiss="modal"> Batal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Hapus -->
 
 </div>
 <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
@@ -129,10 +148,24 @@
                 icon: event.detail.icon,
                 showConfirmButton: true,
                 timer: event.detail.timer,
-                confirmButtonText: 'Hapus',
+               // confirmButtonText: 'Hapus',
+                confirmButtonColor: '#3085d6',
+                buttons: false,
+            });
+         });
+         window.addEventListener('alertDelete', event => {
+            $("#mHapus").modal("hide");
+                Swal.fire({
+                text: event.detail.text,
+                title: event.detail.title,
+                icon: event.detail.icon,
+                showConfirmButton: true,
+                timer: event.detail.timer,
+                //confirmButtonText: 'Hapus',
                 confirmButtonColor: '#3085d6',
                 buttons: false,
             });
          });
     });
 </script>
+

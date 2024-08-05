@@ -25,12 +25,12 @@
                         <th class="text-center">*</th>
                     </tr>
                 </thead>
-                <tbody wire:loading>
+                <tbody wire:loading wire:target='refresh'>
                     <tr>
                         <td rowspan="5">Mengambil Data ...</td>
                     </tr>
                 </tbody>
-                <tbody wire:loading.remove class="text-xs">
+                <tbody wire:loading.remove wire:target='search' class="text-xs">
                     @forelse ( $query as $no=>$data )
                     <tr>
                         <td>{{ $query->firstItem() + $no }}.</td>
@@ -38,10 +38,10 @@
                         <td>{{ $data->tblKat->kategori }}</td>
                         <td>{{ $data->harga }}</td>
                         <td class="text-center">
-                            <button type="button" class="btn btn-sm btn-primary" wire:click="editModal('{{ $data->id }}')" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            <button type="button" class="btn btn-sm btn-primary" wire:click="editModal('{{ $data->id }}')" data-bs-toggle="modal" data-bs-target="#mEdit">
                                 <i class="fa fa-edit"></i>
                             </button>
-                            <button class="btn btn-sm btn-danger">
+                            <button type="button" class="btn btn-sm btn-danger" wire:click="editModal('{{ $data->id }}')" data-bs-toggle="modal" data-bs-target="#mHapus">
                                 <i class="fa fa-trash"></i>
                             </button>
                         </td>
@@ -61,7 +61,9 @@
 
         </div>
     </div>
-    <div wire:ignore.self class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
+
+    <div wire:ignore.self class="modal fade" id="mEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
@@ -92,7 +94,7 @@
                         <div class="row">
                             <label class="col-form-label col-md-4">Harga</label>
                             <div class="col-md-8">
-                                <input type="text" wire:model='harga' class="form-control form-control-sm rounded-0" placeholder="Harga">
+                                <input type="text" wire:model='harga' class="form-control form-control-sm rounded-0 number" placeholder="Harga">
                             </div>
                         </div>
                         <div class="row">
@@ -106,11 +108,31 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success">Simpan</button>
+                        <button id="simpan" type="submit" class="btn btn-success">Simpan</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+
+
 </div>
+<script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+         window.addEventListener('alertEdit', event => {
+            $("#mEdit").modal("hide");
+                Swal.fire({
+                text: event.detail.text,
+                title: event.detail.title,
+                icon: event.detail.icon,
+                showConfirmButton: true,
+                timer: event.detail.timer,
+                confirmButtonText: 'Hapus',
+                confirmButtonColor: '#3085d6',
+                buttons: false,
+            });
+         });
+    });
+</script>

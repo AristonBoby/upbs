@@ -29,6 +29,7 @@
               <li><a href="{{ route('pengajuanBenih') }}" class="nav-link px-2 link-dark">Pengajuan Benih</a></li>
               <li><a href="{{ route('statusLayanan') }}" class="nav-link px-2 link-dark">Status Layanan</a></li>
               <li><a href="{{ route('varitas') }}" class="nav-link px-2 link-dark">Varitas</a></li>
+              <li><a href="{{ route('varitas') }}" class="nav-link px-2 link-dark">Kategori Varitas</a></li>
               <li><a href="{{ route('profil') }}" class="nav-link px-2 link-dark">Profil</a></li>
               <li><a href="#" class="nav-link px-2 link-dark">Tentang</a></li>
             </ul>
@@ -54,8 +55,9 @@
         </div>
     </div>
 </body>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+<script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script type="text/javascript">
     $(document).ready(function(){
       $(".number").keypress(function (e) {

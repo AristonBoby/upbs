@@ -56,9 +56,9 @@ class TableVaritas extends Component
         ]);
 
         if ($query) {
-            $this->dispatch('alert',text:'Data Berhasil diperbarui !!!',icon:'success',title:'Berhasil',timer:2000);
+            $this->dispatch('alertEdit',text:'Data Berhasi diperbarui !!!',icon:'success',title:'Berhasil',timer:2000);
         } else {
-
+            $this->dispatch('alertEdit',text:'Data gagal diperbarui !!!',icon:'danger',title:'Gagal',timer:2000);
         }
 
 

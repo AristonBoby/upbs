@@ -36,7 +36,22 @@
                             <li><a href="{{ route('statusLayanan') }}" class="nav-link px-2 link-dark">Status Layanan</a></li>
                             <li><a href="{{ route('varitas') }}" class="nav-link px-2 link-dark">Kategori Varitas</a></li>
                             <li><a href="{{ route('profil') }}" class="nav-link px-2 link-dark">Profil</a></li>
-                            <li><a href="#" class="nav-link px-2 link-dark">Tentang</a></li>
+                            <li class="nav-item dropdown">
+
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Master Data
+                                  </a>
+                                  <ul class="dropdown-menu">
+                                    <li><p class="dropdown-item">Data Master Varitas</p></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="{{ route('varitas') }}">Varitas</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('varitasHapus') }}">Varitas dihapus</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><p class="dropdown-item">Data Master Varitas</p></li>
+
+                                  </ul>
+
+                            </li>
                         </ul>
                     </div>
                     <form class="d-flex">

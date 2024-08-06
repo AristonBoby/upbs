@@ -31,7 +31,7 @@ class FormVaritas extends Component
 
     public function render()
     {
-        $kategori = tblkatVaritas::all();
+        $kategori = tblkatVaritas::where('status',1)->get();
         return view('livewire.varitas.form-varitas',['kategori'=>$kategori]);
     }
 
@@ -41,12 +41,21 @@ class FormVaritas extends Component
             'varitas'           =>  $this->varVaritas,
             'harga'             =>  $this->varHarga,
             'tblkat_varitas_id' =>  $this->varKategori,
-            'status'            =>  $this->varStatus
+            'status'            =>  $this->varStatus,
         ]);
 
         if($query)
         {
             $this->dispatch('alert',text:'Data Berhasil Disimpan !!!',icon:'success',title:'Berhasil',timer:2000);
+            $this->resetForm();
         }
+    }
+
+    public function resetForm()
+    {
+        $this->varVaritas   = '';
+        $this->varHarga     = '';
+        $this->varKategori  = '';
+        $this->varStatus    = '';
     }
 }

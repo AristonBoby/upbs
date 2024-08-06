@@ -3,7 +3,6 @@
     <div class="card">
         <div class="card-header bg-primary ">
             <b class="text-white"><i class="fa fa-table"></i> Tabel Varitas</b>
-            <a href="" class="btn btn-danger btn-xs float-end rounded-0"><i class="fas fa-trash"></i> Data yang dihapus</a>
         </div>
         <div class="card-body">
             <div class="form-inline  float-sm-end">
@@ -61,7 +60,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="5" class="text-center">Data Tidak ditemukan ...</td>
+                        <td colspan="5" class="text-center">Data tidak ditemukan ...</td>
                     </tr>
                     @endforelse
 

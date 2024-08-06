@@ -23,7 +23,7 @@ class TableVaritas extends Component
 
     public function render()
     {
-        $kategori   = tblkatVaritas::all();
+        $kategori   = tblkatVaritas::where('status',1)->get();
         $query      = tblVaritas::where('varitas','Like',"%{$this->search}%")->orderBy('created_at','desc')->paginate('10');
         return view('livewire.varitas.table-varitas',['query'=>$query, 'kat'=>$kategori]);
     }

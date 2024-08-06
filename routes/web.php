@@ -13,4 +13,5 @@ Route::get('/pengajuanBenih', [App\Http\Controllers\pengajuanBenih::class, 'inde
 Route::get('/statusLayanan', [App\Http\Controllers\statusLayanan::class, 'index'])->name('statusLayanan');
 Route::get('/profil', [App\Http\Controllers\profil::class, 'index'])->name('profil');
 Route::get('/varitas', [App\Http\Controllers\varitas::class, 'index'])->name('varitas');
+Route::get('/hapusVaritas', [App\Http\Controllers\varitas::class, 'restore'])->name('hapusVaritas');
 

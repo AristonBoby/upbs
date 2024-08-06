@@ -1,7 +1,7 @@
 <div class="col-md-4">
     <div class="card">
         <div class="card-header bg-primary">
-            <b class="text-white">Form Varitas</b>
+            <b class="text-white"><i class="fa fa-edit"></i> Form Varitas</b>
         </div>
         <div class="card-body">
             <form wire:submit="create" method="POST">
@@ -22,7 +22,7 @@
                 <div class="form-group row mb-2">
                     <label for="floatingInput" class="form-control-label col-md-4">Kategori</label>
                     <div class="col-md-8">
-                        <select wire:model='varKategori' class="form-control rounded-0 @error('varKategori')is-invalid @enderror">
+                        <select wire:model='varKategori' class="form-select form-control rounded-0 @error('varKategori')is-invalid @enderror">
                             <option value="">-- Pilih Salah Satu --</option>
                             @forelse ( $kategori as $data )
                                 <option value="{{ $data->id }}">{{ $data->kategori }}</option>
@@ -36,7 +36,7 @@
                 <div class="form-group row mb-2">
                     <label for="floatingInput" class="form-control-sm col-md-4">Status</label>
                     <div class="col-md-8">
-                        <select wire:model='varStatus' class="form-control rounded-0 @error('varStatus')is-invalid @enderror">
+                        <select wire:model='varStatus' class="form-select form-control rounded-0 @error('varStatus')is-invalid @enderror">
                             <option value="" selected>-- Pilih Salah Satu --</option>
                             <option value="0">Aktif</option>
                             <option value="1">Tidak Aktif</option>

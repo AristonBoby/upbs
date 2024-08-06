@@ -2,19 +2,24 @@
 <div class="col-md-8">
     <div class="card">
         <div class="card-header bg-primary ">
-            <b class="text-white">Table Varitas</b>
+            <b class="text-white"><i class="fa fa-table"></i> Tabel Varitas</b>
+            <a href="" class="btn btn-danger btn-xs float-end rounded-0"><i class="fas fa-trash"></i> Data yang dihapus</a>
         </div>
         <div class="card-body">
-            <div class="col-lg-12 mb-5">
-                <button wire:click='refresh' class="btn btn-primary btn-sm float-end me-1"><i class="fa fa-reload"></i> Refresh</button>
-                <div class="form-group col-md-4 float-end me-2 row ">
-                    <label class="form-label col-sm-4"><b>Pencarian</b></label>
-                    <div class="col-md-8">
-                        <input class="float-end form-control rounded-0 form-control-sm" wire:model.live='search' placeholder="Pencarian Data ...">
+            <div class="form-inline  float-sm-end">
+                <div class="col-md-12 row">
+                    <div class="col-md-10 col-sm-10 row text-sm-start ">
+                        <label class="col-md-5 text-sm-start" for="inlineFormInputGroupUsername2"><b>Pencarian</b></label>
+                        <div class="col-md-7">
+                            <input type="text" class="form-control form-control-sm rounded-0" wire:model.live='search' placeholder="Pencarian...">
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-2 float-end">
+                        <button type="submit" wire:click='refresh' class="btn btn-sm btn-primary rounded-0 mb-2">Refresh</button>
                     </div>
                 </div>
-
             </div>
+
             <table class="mt-1 table table-sm table-striped table-bordered text-xs fst-normal mb-3">
                 <thead>
                     <tr>
@@ -22,6 +27,7 @@
                         <th>Nama Varitas</th>
                         <th>Kategori Varitas</th>
                         <th>Harga</th>
+                        <th>Status</th>
                         <th class="text-center">*</th>
                     </tr>
                 </thead>
@@ -37,6 +43,13 @@
                         <td>{{ $data->varitas }}</td>
                         <td>{{ $data->tblKat->kategori }}</td>
                         <td>{{ $data->harga }}</td>
+                        <td>
+                            @if ($data->status ===1)
+                                <span class="badge bg-success">Aktif</span>
+                            @elseif ($data->status ===0)
+                                <span class="badge bg-warning text-dark">Tidak Aktif</span>
+                            @endif
+                        </td>
                         <td class="text-center">
                             <button type="button" class="btn btn-sm btn-primary" wire:click="editModal('{{ $data->id }}')" data-bs-toggle="modal" data-bs-target="#mEdit">
                                 <i class="fa fa-edit"></i>

@@ -19,7 +19,7 @@ class TableVaritas extends Component
     public $harga;
     public $kategori;
     public $status=1;
-
+    public $statusVaritas=1;
 
     public function render()
     {
@@ -71,5 +71,12 @@ class TableVaritas extends Component
         {
             $this->dispatch('alertDelete',text:'Data Berhasi di Hapus !!!',icon:'success',title:'Berhasil',timer:2000);
         }
+    }
+
+    public function restoreVaritas($id)
+    {
+        $user = tblVaritas::withTrashed()->find($id);
+        $user->restore();
+
     }
 }

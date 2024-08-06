@@ -41,7 +41,7 @@
                             </td>
                             <td class="text-center">
                                 <a href="#" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
-                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#katHapus" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#mHapus">
+                                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#katHapus" wire:click='hapusId("{{ $data->id }}")' class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#mHapus">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>
@@ -76,4 +76,22 @@
         </div>
     </div>
 </div>
+<script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+<script>
+ $(document).ready(function(){
+    window.addEventListener('alertVaritas', event => {
+        $("#katHapus").modal("hide");
+        Swal.fire({
+            text: event.detail.text,
+            title: event.detail.title,
+            icon: event.detail.icon,
+            showConfirmButton: false,
+            timer: event.detail.timer,
+            buttons: false,
+        });
+
+    });
+
+ });
+</script>
 

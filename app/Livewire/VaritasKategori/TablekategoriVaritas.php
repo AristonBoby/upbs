@@ -11,6 +11,7 @@ class TablekategoriVaritas extends Component
     protected $paginationTheme = 'bootstrap';
 
     public $pencarian;
+    public $id;
 
     public function render()
     {
@@ -25,6 +26,21 @@ class TablekategoriVaritas extends Component
     public function refesh()
     {
         $this->render();
+    }
+
+    public function hapusId($id)
+    {
+        $this->id = $id;
+    }
+
+    public function hapus()
+    {
+        $query = tblkatVaritas::find($this->id)->delete();
+
+        if($query)
+        {
+            $this->dispatch('alertVaritas',text:'Data Berhasil dihapus !!!',icon:'success',title:'Berhasil',timer:2000);
+        }
     }
 
 }

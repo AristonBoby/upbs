@@ -47,8 +47,9 @@
                                         <li><a class="dropdown-item" href="{{ route('varitasHapus') }}">Varitas dihapus</a></li>
                                         <li><hr class="dropdown-divider"></li>
                                         <li><p class="dropdown-item">Data Master Kategori Varitas</p></li>
-                                        <li><a class="dropdown-item" href="{{ route('katVaritas') }}">Kategori Varitas</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('varitas') }}">Kategori Varitas dihapus</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item hover" href="{{ route('katVaritas') }}">Kategori Varitas</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('katvaritasHapus') }}">Kategori Varitas dihapus</a></li>
                                     </ul>
                             </li>
                         </ul>

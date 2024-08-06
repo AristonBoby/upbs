@@ -67,7 +67,7 @@
                 </tbody>
             </table>
 
-            <div class="btn-xs">
+            <div class="btn-sm">
                 {{ $query->links() }}
             </div>
 

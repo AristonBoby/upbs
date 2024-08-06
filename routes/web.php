@@ -15,5 +15,7 @@ Route::get('/profil', [App\Http\Controllers\profil::class, 'index'])->name('prof
 Route::get('/varitas', [App\Http\Controllers\varitas::class, 'index'])->name('varitas');
 Route::get('/varitasHapus', [App\Http\Controllers\varitasHapus::class, 'index'])->name('varitasHapus');
 Route::get('/katVaritas', [App\Http\Controllers\kategoriVaritas::class, 'index'])->name('katVaritas');
+Route::get('/katvaritasHapus', [App\Http\Controllers\kategorivaritasHapus::class, 'index'])->name('katvaritasHapus');
+
 //Route::get('/hapusVaritas', [App\Http\Controllers\varitas::class, 'restore'])->name('hapusVaritas');
 

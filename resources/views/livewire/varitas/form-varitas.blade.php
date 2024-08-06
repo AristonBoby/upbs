@@ -38,8 +38,8 @@
                     <div class="col-md-8">
                         <select wire:model='varStatus' class="form-select form-control rounded-0 @error('varStatus')is-invalid @enderror">
                             <option value="" selected>-- Pilih Salah Satu --</option>
-                            <option value="0">Aktif</option>
-                            <option value="1">Tidak Aktif</option>
+                            <option value="1">Aktif</option>
+                            <option value="0">Tidak Aktif</option>
                         </select>
                         @error('varStatus')<div class="invalid-feedback">{{ $message }}</div>@enderror
                     </div>

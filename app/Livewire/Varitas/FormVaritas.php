@@ -11,7 +11,7 @@ class FormVaritas extends Component
     public $varVaritas;
     public $varHarga;
     public $varKategori;
-    public $varStatus;
+    public $varStatus=1;
 
     protected $rules = [
         'varVaritas'    => 'required',
@@ -20,6 +20,15 @@ class FormVaritas extends Component
         'varStatus'     => 'required',
 
     ];
+
+    protected $messages = [
+        'varVaritas.required'       => 'Data Varitas wajib diisi !!!',
+        'varHarga.required'         => 'Data Harga wajib diisi !!!',
+        'varHarga.numeric'          => 'Data Harga wajib angka !!!',
+        'varKategori.required'      => 'Data Kategori wajib diisi !!!',
+        'varStatus.required'        => 'Data Status wajib diisi !!!',
+    ];
+
     public function render()
     {
         $kategori = tblkatVaritas::all();
@@ -35,6 +44,9 @@ class FormVaritas extends Component
             'status'            =>  $this->varStatus
         ]);
 
-
+        if($query)
+        {
+            $this->dispatch('alert',text:'Data Berhasil Disimpan !!!',icon:'success',title:'Berhasil',timer:2000);
+        }
     }
 }

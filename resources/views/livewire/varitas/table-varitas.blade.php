@@ -80,7 +80,7 @@
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Edit Varitas</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel"><i class="fa fa-edit text-sm"></i> Edit Varitas</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form wire:submit="update">

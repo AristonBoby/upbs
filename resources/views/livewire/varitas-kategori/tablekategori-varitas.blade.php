@@ -13,7 +13,7 @@
                         </div>
                     </div>
                     <div class="col-md-2 col-sm-2 float-end">
-                        <button type="submit" wire:click='refresh' class="btn btn-sm btn-primary rounded-0 mb-2">Refresh</button>
+                        <button type="submit" wire:click='refeshTable' class="btn btn-sm btn-primary rounded-0 mb-2">Refresh</button>
                     </div>
                 </div>
             </div>
@@ -37,10 +37,12 @@
                             <td>
                                 @if ($data->status == 1)
                                     <span class="badge rounded-pill text-bg-success">Aktif</span>
+                                @elseif($data->status == 0)
+                                <span class="badge rounded-pill text-bg-warning">Tidak Aktif</span>
                                 @endif
                             </td>
                             <td class="text-center">
-                                <a href="#" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
+                                <a href="javascript:void(0)" wire:click='editId("{{ $data->id }}")' data-bs-toggle="modal" data-bs-target="#katEdit" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
                                 <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#katHapus" wire:click='hapusId("{{ $data->id }}")' class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#mHapus">
                                     <i class="fa fa-trash"></i>
                                 </a>
@@ -57,6 +59,7 @@
             {{ $query->links() }}
         </div>
     </div>
+
     <div wire:ignore.self class="modal fade" id="katHapus" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
@@ -75,12 +78,49 @@
             </div>
         </div>
     </div>
+
+    <div wire:ignore.self class="modal fade" id="katEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel"><i class="fa fa-edit text-sm"></i> Edit Kategori Varitas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-sm-start">
+                    <form wire:submit='updateKategori'>
+                        <div class="form-group row mb-1">
+                            <label class="form-label col-md-4"><b>Kategori <span class="text-danger">*</span></b></label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control form-control-sm rounded-0 @error($valKategori) is-invalid @enderror" wire:model='valKategori' placeholder="Masukan data kategori">
+                                @error('valKategori') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-md-4"><b>Status </b><span class="text-danger">*</span></label>
+                            <div class="col-md-8">
+                                <div class="form-check form-switch">
+                                    <input wire:model='valStatus' class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" @if($valStatus=='1') checked @endif>
+                                    <label class="form-check-label" for="flexSwitchCheckChecked"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <button class="btn btn-success btn-sm"><i class="fa fa-save"></i> Simpan</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
 <script>
  $(document).ready(function(){
     window.addEventListener('alertVaritas', event => {
         $("#katHapus").modal("hide");
+        $("#katEdit").modal("hide");
         Swal.fire({
             text: event.detail.text,
             title: event.detail.title,

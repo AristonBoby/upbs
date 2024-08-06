@@ -9,9 +9,10 @@ use Livewire\WithPagination;
 class TablekategoriVaritas extends Component
 {   use WithPagination;
     protected $paginationTheme = 'bootstrap';
-
     public $pencarian;
     public $id;
+    public $valKategori='';
+    public $valStatus=1;
 
     public function render()
     {
@@ -23,7 +24,7 @@ class TablekategoriVaritas extends Component
     {
         $this->resetPage();
     }
-    public function refesh()
+    public function refeshTable()
     {
         $this->render();
     }
@@ -40,6 +41,40 @@ class TablekategoriVaritas extends Component
         if($query)
         {
             $this->dispatch('alertVaritas',text:'Data Berhasil dihapus !!!',icon:'success',title:'Berhasil',timer:2000);
+        }
+    }
+
+    public function editId($id)
+    {
+        $query = tblkatVaritas::where('id',$id)->first();
+        if($query)
+        {
+            $this->valKategori  = $query->kategori;
+            $this->valStatus    = $query->status;
+            $this->id           = $query->id;
+        }
+    }
+
+    public $rules = [
+        'valKategori'   => 'required',
+        'valStatus'     => 'required',
+    ];
+
+    public $messages = [
+        'valKategori.required'  => 'Data Kategori wajib diisi !!!'
+    ];
+
+    public function updateKategori()
+    {   $this->validate();
+        $query = tblkatVaritas::where('id',$this->id)->first();
+        $query->update([
+            'kategori' => $this->valKategori,
+            'status' => $this->valStatus,
+        ]);
+
+        if ($query)
+        {
+            $this->dispatch('alertVaritas',text:'Data Berhasil diupdate !!!',icon:'success',title:'Berhasil',timer:2000);
         }
     }
 

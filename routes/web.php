@@ -16,6 +16,7 @@ Route::get('/varitas', [App\Http\Controllers\varitas::class, 'index'])->name('va
 Route::get('/varitasHapus', [App\Http\Controllers\varitasHapus::class, 'index'])->name('varitasHapus');
 Route::get('/katVaritas', [App\Http\Controllers\kategoriVaritas::class, 'index'])->name('katVaritas');
 Route::get('/katvaritasHapus', [App\Http\Controllers\kategorivaritasHapus::class, 'index'])->name('katvaritasHapus');
+Route::get('/passwordUpdate', [App\Http\Controllers\passwordUpdate::class, 'index'])->name('passwordUpdate');
 
 //Route::get('/hapusVaritas', [App\Http\Controllers\varitas::class, 'restore'])->name('hapusVaritas');
 

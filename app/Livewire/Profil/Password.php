@@ -10,7 +10,7 @@ use Livewire\Component;
 class Password extends Component
 {
     public $passLama;
-    public $passBaru;
+    public $valpassBaru;
     public $repassBaru;
 
     public function render()
@@ -18,19 +18,20 @@ class Password extends Component
         return view('livewire.profil.password');
     }
 
-    public $rules = [
-        'passLama'      => 'required',
-        'passBaru'      => 'required',
-        'repassBaru'    => 'required|same:passBaru',
+    protected $rules = [
+        'valpassLama'      => 'required',
+        'valpassBaru'      => 'required|',
+        'valrepassBaru'    => 'required|same:passBaru',
     ];
 
     public function passwordUpdate()
     {
         $this->validate();
-        $id = Auth::user()->id;
-        $query = User::find($id)->update([
-            'password' => Hash::make($this->passBaru),
 
+        $id = Auth::user()->id;
+
+        $query = User::find($id)->update([
+            'password' => Hash::make($this->valpassBaru),
         ]);
     }
 }

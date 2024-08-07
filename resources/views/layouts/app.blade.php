@@ -34,7 +34,6 @@
                             <li><a href="{{ route('pendaftaran') }}" class="nav-link px-2 link-dark">Pendaftaran</a></li>
                             <li><a href="{{ route('pengajuanBenih') }}" class="nav-link px-2 link-dark">Pengajuan Benih</a></li>
                             <li><a href="{{ route('statusLayanan') }}" class="nav-link px-2 link-dark">Status Layanan</a></li>
-                            <li><a href="{{ route('varitas') }}" class="nav-link px-2 link-dark">Kategori Varitas</a></li>
                             <li><a href="{{ route('profil') }}" class="nav-link px-2 link-dark">Profil</a></li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

@@ -7,13 +7,6 @@
         <div class="card-body">
             <form wire:submit='passwordUpdate'>
                 <div class="form-group row mb-2">
-                    <label class="col-form-label col-md-4">Password Lama <span class="text-danger">*</span></label>
-                    <div class="col-md-8">
-                        <input type="text" wire:model='passLama' class="form-control form-control-sm rounded-0 @error('passLama') is-invalid @enderror">
-                        @error('passLama') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                    </div>
-                </div>
-                <div class="form-group row mb-2">
                     <label class="col-form-label col-md-4">Password Baru <span class="text-danger">*</span></label>
                     <div class="col-md-8">
                         <input type="text" wire:model='valpassBaru' class="form-control form-control-sm rounded-0 @error('valpassBaru') is-invalid @enderror">
@@ -23,7 +16,7 @@
                 <div class="form-group row mb-2">
                     <label class="col-form-label col-md-4" >Re-Password Baru <span class="text-danger">*</span></label>
                     <div class="col-md-8">
-                        <input type="text" wire:model='repassBaru' class="form-control form-control-sm rounded-0 @error('valrepassBaru') is-invalid @enderror">
+                        <input type="text" wire:model='valrepassBaru' class="form-control form-control-sm rounded-0 @error('valrepassBaru') is-invalid @enderror">
                         @error('valrepassBaru') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
                 </div>

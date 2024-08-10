@@ -1,5 +1,4 @@
-<div>
-    <main class='col-md-12'>
+    <div class='col-md-12'>
         <div class="row justify-content-center">
             <div class="col-md-12" role="document">
                 <div class=" rounded-4 shadow">
@@ -13,19 +12,19 @@
                                         </div>
                                         <div class="card-body">
                                             <div class="form-floating mb-3">
-                                                <input type="email" class="form-control " id="floatingInput" value="dd" placeholder="name@example.com" disabled>
+                                                <input type="email" class="form-control" wire:model='valNama' id="floatingInput" value="dd" placeholder="name@example.com" disabled>
                                                 <label for="floatingInput">Nama Lengkap</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input type="text" class="form-control form-control-sm" id="floatingPassword" placeholder="Password" disabled>
+                                                <input type="text" wire:model='valAlamat' class="form-control form-control-sm" id="floatingPassword" placeholder="Password" disabled>
                                                 <label for="floatingPassword">Alamat</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input type="noHp" class="form-control" id="floatingPassword" placeholder="Password"disabled>
-                                                <label for="floatingPassword">No.Tlpn / HP</label>
+                                                <input type="noHp" class="form-control" id="floatingPassword" wire:model='valnoTlpn' placeholder="Password"disabled>
+                                                <label for="floatingPassword" >No.Tlpn / HP</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input type="pekerjaan" class="form-control" id="floatingPassword" placeholder="Password"disabled>
+                                                <input type="pekerjaan" class="form-control" id="floatingPassword" wire:model='valPekerjaan' placeholder="Password"disabled>
                                                 <label for="floatingPassword">Pekerjaan</label>
                                             </div>
 
@@ -154,5 +153,4 @@
                 </div>
             </div>
         </div>
-    </main>
-</div>
+    </div>

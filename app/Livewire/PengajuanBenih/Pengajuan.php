@@ -16,11 +16,22 @@ class Pengajuan extends Component
     public $varKota;
     public $varKecamatan;
     public $varKelurahan;
-
     public $valNama;
     public $valAlamat;
     public $valnoTlpn;
     public $valPekerjaan;
+
+    public $varitas;
+    public $i;
+    public $jumlah;
+
+
+    public function mount()
+    {
+        $this->varitas=[];
+        $this->jumlah=[];
+        $this->i = 1 ;
+    }
 
     public function render()
     {
@@ -39,5 +50,34 @@ class Pengajuan extends Component
         $this->valAlamat  =   Auth::User()->alamat;
         $this->valnoTlpn  =   Auth::User()->noTlpn;
         $this->valPekerjaan  =   Auth::User()->pekerjaan;
+    }
+
+    public function add($i)
+    {
+        $this->i = $i + 1;
+        array_push($this->varitas,$this->i);
+    }
+
+    public function remove($id)
+    {
+        unset($this->varitas[$id]);
+        unset($this->jumlah[$id]);
+
+
+
+    }
+
+    protected $rules = [
+        'jumlah' => 'array|required',
+    ];
+
+    public function simpan()
+    {
+        $this->validate();
+        //dd($this->jumlah);
+        $aray = array_values($this->jumlah);
+        dd($aray);
+
+
     }
 }

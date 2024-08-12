@@ -2,7 +2,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12" role="document">
                 <div class=" rounded-4 shadow">
-                    <form action="#" method="POST">
+                    <form action="#" wire:submit='simpan'>
                         <div class="p-5">
                             <div class="row">
                                 <div class="col-md-6">
@@ -111,9 +111,9 @@
                                     <b class="card-title">Varitas</b >
                                 </div>
                                 <div class="cord-body p-3">
+                                    <button type="button" class="btn btn-sm btn-primary mb-3" wire:click='add({{ $i }})'>+ Tambah Varitas</button>
                                     <table class="table table-sm table-bordered">
                                         <thead>
-                                            <th width="5">No.</th>
                                             <th>Jenis Varitas</th>
                                             <th width="100">Jumlah</th>
                                             <th>Harga Satuan</th>
@@ -121,25 +121,26 @@
                                             <th class="text-center">*</th>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td><select class="form-control">
-                                                        <option>-- Pilih Salah Satu --</option>
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <input type="text" class="form-control">
-                                                </td>
-                                                <td>
-                                                    <input type="text" class="form-control" disabled>
-                                                </td>
-                                                <td>
-                                                    <input type="text" class="form-control" disabled>
-                                                </td>
-                                                <td class="text-center">
-                                                    <button type="button" class="btn btn-sm btn-primary">+</button>
-                                                </td>
-                                            </tr>
+                                            @foreach ($varitas as $no=> $item)
+                                                <tr>
+
+                                                    <td><select class="form-control">
+                                                            <option>-- Pilih Salah Satu --</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control @error('jumlah.'.$no) is-invalid @enderror" wire:model='jumlah.{{ $no }}'>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" disabled>
+                                                    <td>
+                                                        <input type="text" class="form-control" disabled>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <button type="button" class="btn btn-sm btn-primary" wire:click='remove({{ $no }})'>-</button>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
 
                                     </table>

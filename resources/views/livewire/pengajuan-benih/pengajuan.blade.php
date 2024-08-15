@@ -6,7 +6,7 @@
                         <div class="p-5">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div  class="card mb-3 ">
+                                    <div  class="card shadow mb-3 ">
                                         <div class="card-header text-white bg-primary">
                                             <label class="card-title"><b>DATA PEMOHON</b></label>
                                         </div>
@@ -33,7 +33,7 @@
 
                                 </div>
                                 <div class="col-md-6">
-                                    <div  class="card mb-3">
+                                    <div  class="card mb-3 shadow ">
                                         <div class="card-header text-white bg-primary">
                                             <label class="card-title"><b>JENIS PERMOHONAN</b></label>
                                         </div>
@@ -52,7 +52,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card mb-3">
+                                    <div class="card mb-3 shadow ">
                                         <div class="card-header bg-primary text-white">
                                             <label class="card-title"><b>LOKASI TANAM BIBIT</b></label>
                                         </div>
@@ -106,12 +106,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card card-primary mb-3">
+                            <div class="card card-primary mb-3 shadow">
                                 <div class="card-header bg-success text-white">
                                     <b class="card-title">Varitas</b >
                                 </div>
                                 <div class="cord-body p-3">
-                                    <button type="button" class="btn btn-sm btn-primary mb-3" wire:click='add({{ $i }})'>+ Tambah Varitas</button>
+                                    <button type="button" class="btn btn-sm btn-primary mb-3" wire:click='add({{ $i+2 }},{{ $i+1 }})'>+ Tambah Varitas</button>
                                     <table class="table table-sm table-bordered">
                                         <thead>
                                             <th>Jenis Varitas</th>
@@ -121,18 +121,21 @@
                                             <th class="text-center">*</th>
                                         </thead>
                                         <tbody>
-                                            @foreach ($varitas as $no=> $item)
+                                            @foreach ($varitas as $no=>$item)
                                                 <tr>
-
-                                                    <td><select class="form-control">
+                                                    <td>
+                                                        <select class="form-control" wire:model.live='jenis.{{ $no }}'>
                                                             <option>-- Pilih Salah Satu --</option>
+                                                            @foreach($jenis as $data)
+                                                                <option>{{$data->varitas}}</option>
+                                                            @endforeach
                                                         </select>
                                                     </td>
                                                     <td>
                                                         <input type="text" class="form-control @error('jumlah.'.$no) is-invalid @enderror" wire:model='jumlah.{{ $no }}'>
                                                     </td>
                                                     <td>
-                                                        <input type="text" class="form-control" disabled>
+                                                        <input type="text" wire:model.live='' class="form-control">
                                                     <td>
                                                         <input type="text" class="form-control" disabled>
                                                     </td>
@@ -142,7 +145,6 @@
                                                 </tr>
                                             @endforeach
                                         </tbody>
-
                                     </table>
                                 </div>
                             </div>

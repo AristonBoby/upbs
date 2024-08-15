@@ -2,10 +2,12 @@
 
 namespace App\Livewire\PengajuanBenih;
 
+use App\Http\Controllers\varitas;
 use App\Models\kecamatan;
 use App\Models\kelurahan;
 use App\Models\kota;
 use App\Models\provinsi;
+use App\Models\tblVaritas;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use User;
@@ -24,12 +26,14 @@ class Pengajuan extends Component
     public $varitas;
     public $i;
     public $jumlah;
+    public $harga;
 
 
     public function mount()
     {
         $this->varitas=[];
         $this->jumlah=[];
+        $this->harga=[];
         $this->i = 1 ;
     }
 
@@ -40,8 +44,8 @@ class Pengajuan extends Component
         $kota       = kota::where('provinsi_id',$this->varprovinsi)->get();
         $kecamatan  = kecamatan::where('kota_id',$this->varKota)->get();
         $kelurahan  = kelurahan::where('kecamatan_id',$this->varKecamatan)->get();
-
-        return view('livewire.pengajuan-benih.pengajuan',['provinsi'=>$provinsi,'kota'=>$kota,'kecamatan'=>$kecamatan,'kelurahan'=>$kelurahan]);
+        $varitas    = tblVaritas::all();
+        return view('livewire.pengajuan-benih.pengajuan',['provinsi'=>$provinsi,'kota'=>$kota,'kecamatan'=>$kecamatan,'kelurahan'=>$kelurahan,'jenis'=>$varitas]);
     }
 
     public function dataUser()
@@ -62,13 +66,12 @@ class Pengajuan extends Component
     {
         unset($this->varitas[$id]);
         unset($this->jumlah[$id]);
-
-
+        unset($this->harga[$id]);
 
     }
 
     protected $rules = [
-        'jumlah' => 'array|required',
+        'jumlah.0' => 'array|required',
     ];
 
     public function simpan()

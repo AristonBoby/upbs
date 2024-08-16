@@ -111,7 +111,7 @@
                                     <b class="card-title">Varitas</b >
                                 </div>
                                 <div class="cord-body p-3">
-                                    <button type="button" class="btn btn-sm btn-primary mb-3" wire:click='add({{ $i+2 }},{{ $i+1 }})'>+ Tambah Varitas</button>
+                                    <button type="button" class="btn btn-sm btn-primary mb-3" wire:click='add()'>+ Tambah Varitas</button>
                                     <table class="table table-sm table-bordered">
                                         <thead>
                                             <th>Jenis Varitas</th>
@@ -124,10 +124,10 @@
                                             @foreach ($varitas as $no=>$item)
                                                 <tr>
                                                     <td>
-                                                        <select class="form-control" wire:model.live='jenis.{{ $no }}'>
-                                                            <option>-- Pilih Salah Satu --</option>
+                                                        <select class="form-control" wire:model='varitas.{{ $no }}' wire:click='jenisVaritas({{ $no }})'>
+                                                            <option selected>-- Pilih Salah Satu --</option>
                                                             @foreach($jenis as $data)
-                                                                <option>{{$data->varitas}}</option>
+                                                                <option value={{$data->id}}>{{ $data->varitas }}</option>
                                                             @endforeach
                                                         </select>
                                                     </td>
@@ -135,7 +135,7 @@
                                                         <input type="text" class="form-control @error('jumlah.'.$no) is-invalid @enderror" wire:model='jumlah.{{ $no }}'>
                                                     </td>
                                                     <td>
-                                                        <input type="text" wire:model.live='' class="form-control">
+                                                        <input type="text" wire:model='harga.{{  $no  }}' class="form-control">
                                                     <td>
                                                         <input type="text" class="form-control" disabled>
                                                     </td>
@@ -149,7 +149,7 @@
                                 </div>
                             </div>
                             <div class="d-grid gap-1">
-                                <button type="submit" class="btn btn-primary btn-block">Simpan</button>
+                                <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-save"></i> Simpan</button>
                             </div>
                         </div>
                     </form>

@@ -2,30 +2,35 @@
     <div class="col-md-5" role="document">
         <div class="rounded-4 shadow">
             <div class="card">
+                <div class="card-header bg-primary">
+                    <span class="card-title text-white"><b><i class="fa fa-edit"></i> PROFIL USER</b></span>
+                </div>
                 <form wire:submit='update'>
                     <div class="card-body">
-                        <div class=" mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Nama Lengkap</label>
-                            <input type="text" wire:model='name' class="form-control" id="exampleFormControlInput1" placeholder="Nama Lengkap">
-                        </div>
-                        <div class=" mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Email</label>
-                            <input type="email" class="form-control" value="{{ Auth::user()->email }}" id="exampleFormControlInput1" disabled>
-                        </div>
-                        <div class=" mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Pekerjaan</label>
-                            <input type="text" wire:model='pekerjaan' class="form-control" id="exampleFormControlInput1">
-                        </div>
-                        <div class=" mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">No. Telepon / HP</label>
-                            <input type="text" wire:model='noTlpn'class="form-control" id="exampleFormControlInput1" >
-                        </div>
-                        <div class=" mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Alamat</label>
-                            <input type="text" class="form-control" wire:model='alamat' id="exampleFormControlInput1" >
-                        </div>
-                        <div class="d-grid gap-1">
-                        <button class="btn btn-primary btn-block">Simpan</button>
+                        <div class="row">
+                            <div class=" mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Nama Lengkap</label>
+                                <input type="text" wire:model='name' class="form-control" id="exampleFormControlInput1" placeholder="Nama Lengkap">
+                            </div>
+                            <div class=" mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Email</label>
+                                <input type="email" class="form-control" value="{{ Auth::user()->email }}" id="exampleFormControlInput1" disabled>
+                            </div>
+                            <div class=" mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Pekerjaan</label>
+                                <input type="text" wire:model='pekerjaan' class="form-control" id="exampleFormControlInput1">
+                            </div>
+                            <div class=" mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">No. Telepon / HP</label>
+                                <input type="text" wire:model='noTlpn'class="form-control" id="exampleFormControlInput1" >
+                            </div>
+                            <div class=" mb-4">
+                                <label for="exampleFormControlInput1" class="form-label">Alamat</label>
+                                <input type="text" class="form-control" wire:model='alamat' id="exampleFormControlInput1" >
+                            </div>
+                            <div class="">
+                                <button class="btn btn-primary float-end"><i class="fa fa-save"></i> Simpan</button>
+                            </div>
                         </div>
                     </div>
                     <div class="card-footer">

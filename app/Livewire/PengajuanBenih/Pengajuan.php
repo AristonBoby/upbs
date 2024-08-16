@@ -10,7 +10,6 @@ use App\Models\provinsi;
 use App\Models\tblVaritas;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
-use User;
 
 class Pengajuan extends Component
 {
@@ -27,14 +26,15 @@ class Pengajuan extends Component
     public $i;
     public $jumlah;
     public $harga;
+    public $idvaritas;
 
 
     public function mount()
-    {
+    {   $this->idVaritas =[];
         $this->varitas=[];
         $this->jumlah=[];
         $this->harga=[];
-        $this->i = 1 ;
+        $this->i = 0 ;
     }
 
     public function render()
@@ -56,9 +56,10 @@ class Pengajuan extends Component
         $this->valPekerjaan  =   Auth::User()->pekerjaan;
     }
 
-    public function add($i)
+    public function add()
     {
-        $this->i = $i + 1;
+       // dd($i);
+        $this->i = $this->i + 1;
         array_push($this->varitas,$this->i);
     }
 
@@ -82,5 +83,12 @@ class Pengajuan extends Component
         dd($aray);
 
 
+    }
+
+    public function jenisVaritas($no)
+    {
+        $query = tblVaritas::where('id',$this->varitas[$no])->first();
+        $this->harga[$no] = $query->harga;
+         
     }
 }

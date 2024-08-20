@@ -22,7 +22,7 @@ class Pengajuan extends Component
     public $valnoTlpn;
     public $valPekerjaan;
 
-    public $varitas;
+    public $varitas=0;
     public $i;
     public $jumlah;
     public $harga;
@@ -30,8 +30,8 @@ class Pengajuan extends Component
 
 
     public function mount()
-    {   $this->idVaritas =[];
-        $this->varitas=[];
+    {   $this->idVaritas =[0];
+        $this->varitas=[0];
         $this->jumlah=[];
         $this->harga=[];
         $this->i = 0 ;
@@ -50,17 +50,15 @@ class Pengajuan extends Component
 
     public function dataUser()
     {
-        $this->valNama  =   Auth::User()->name;
-        $this->valAlamat  =   Auth::User()->alamat;
-        $this->valnoTlpn  =   Auth::User()->noTlpn;
-        $this->valPekerjaan  =   Auth::User()->pekerjaan;
+        $this->valNama      =   Auth::User()->name;
+        $this->valAlamat    =   Auth::User()->alamat;
+        $this->valnoTlpn    =   Auth::User()->noTlpn;
+        $this->valPekerjaan =   Auth::User()->pekerjaan;
     }
 
     public function add()
     {
-       // dd($i);
-        $this->i = $this->i + 1;
-        array_push($this->varitas,$this->i);
+        $this->varitas[] +=1;
     }
 
     public function remove($id)
@@ -77,18 +75,27 @@ class Pengajuan extends Component
 
     public function simpan()
     {
-        $this->validate();
-        //dd($this->jumlah);
-        $aray = array_values($this->jumlah);
-        dd($aray);
-
-
+        dd($this->idvaritas);
+        // $this->validate();
+        // $aray = array_values($this->jumlah);
+        // dd($aray);
     }
 
     public function jenisVaritas($no)
     {
-        $query = tblVaritas::where('id',$this->varitas[$no])->first();
-        $this->harga[$no] = $query->harga;
-         
+         $query = tblVaritas::where('id',$this->idvaritas[$no])->first();
+        dd($this->idvaritas[$no]);
+            
     }
+
+    public function updatingIdvaritas()
+    {
+        dd('ddd');
+    }
+
+    public function varitasView($id)
+    {
+        dd($id);
+    }
+    
 }

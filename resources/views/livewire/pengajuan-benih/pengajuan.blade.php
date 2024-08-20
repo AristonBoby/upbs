@@ -124,8 +124,8 @@
                                             @foreach ($varitas as $no=>$item)
                                                 <tr>
                                                     <td>
-                                                        <select class="form-control" wire:model='varitas.{{ $no }}' wire:click='jenisVaritas({{ $no }})'>
-                                                            <option selected>-- Pilih Salah Satu --</option>
+                                                        <select class="form-control" wire:model='idvaritas.{{ $no }}.varitas'>
+                                                            <option value="" selected>-- Pilih Salah Satu --</option>
                                                             @foreach($jenis as $data)
                                                                 <option value={{$data->id}}>{{ $data->varitas }}</option>
                                                             @endforeach
@@ -135,12 +135,15 @@
                                                         <input type="text" class="form-control @error('jumlah.'.$no) is-invalid @enderror" wire:model='jumlah.{{ $no }}'>
                                                     </td>
                                                     <td>
-                                                        <input type="text" wire:model='harga.{{  $no  }}' class="form-control">
+                                                        <input type="text" wire:model='harga.{{$no}}' class="form-control">
                                                     <td>
                                                         <input type="text" class="form-control" disabled>
                                                     </td>
                                                     <td class="text-center">
                                                         <button type="button" class="btn btn-sm btn-primary" wire:click='remove({{ $no }})'>-</button>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <button type="button" class="btn btn-sm btn-primary" wire:click='varitasView({{ $no}})'>...</button>
                                                     </td>
                                                 </tr>
                                             @endforeach

@@ -26,8 +26,12 @@ class Pengajuan extends Component
     public $i;
     public $jumlah;
     public $harga;
-    public $idvaritas;
+    public $idVaritas;
 
+    // Modal Variable //
+    public $modalVaritas;
+    public $modalJumlah;
+    public $modalHarga;
 
     public function mount()
     {   $this->idVaritas =[0];
@@ -75,7 +79,7 @@ class Pengajuan extends Component
 
     public function simpan()
     {
-        dd($this->idvaritas);
+        dd($this->idVaritas);
         // $this->validate();
         // $aray = array_values($this->jumlah);
         // dd($aray);
@@ -83,19 +87,22 @@ class Pengajuan extends Component
 
     public function jenisVaritas($no)
     {
-         $query = tblVaritas::where('id',$this->idvaritas[$no])->first();
-        dd($this->idvaritas[$no]);
+         $query = tblVaritas::where('id',$this->idVaritas[$no])->first();
+         dd($this->idVaritas[$no]);
             
-    }
-
-    public function updatingIdvaritas()
-    {
-        dd('ddd');
     }
 
     public function varitasView($id)
     {
-        dd($id);
+        $this->i = $id;
     }
-    
+
+    public function simpanVaritas ()
+    {
+        $this->idVaritas[$this->i]  = $this->modalVaritas;
+        $this->jumlah[$this->i]     = $this->modalJumlah;
+        $query = tblVaritas::find($this->modalVaritas)->first();
+        dd($query); 
+        
+    }
 }

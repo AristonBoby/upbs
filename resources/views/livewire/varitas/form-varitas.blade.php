@@ -52,5 +52,57 @@
             </form>
         </div>
     </div>
+        <div wire:ignore.self class="modal fade" id="mEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel"><i class="fa fa-edit text-sm"></i> Edit Varitas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form wire:submit="update">
+                    <div class="modal-body text-sm-start">
+                        <div class="row">
+                            <label class="col-form-label col-md-4">Nama Varitas</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control form-control-sm rounded-0" wire:model='varitas' placeholder="Nama Varitas">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-form-label col-md-4">Kategori Varitas</label>
+                            <div class="col-md-8">
+                                <select wire:model='kategori' class="form-control form-control-sm rounded-0">
+                                        <option value="" selected>-- Pilih Salah Satu --</option>
+                                    @forelse ( $kat as $data )
+                                        <option value="{{ $data->id }}">{{ $data->kategori }}</option>
+                                    @empty
+                                        <option value="" selected> -- Data Tidak ditemukan</option>
+                                    @endforelse
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-form-label col-md-4">Harga</label>
+                            <div class="col-md-8">
+                                <input type="text" wire:model='harga' class="form-control form-control-sm rounded-0 number" placeholder="Harga">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-md-4">Status</label>
+                            <div class="col-md-8">
+                                <div class="form-check form-switch">
+                                    <input wire:model='status' value="{{ $status }}" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" @if($status=='1') checked @endif>
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">@if($status=='1' || $status===1) Aktif @endif @if($status=='0') Tidak Aktif @endif</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="simpan" type="submit" class="btn btn-success">Simpan</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 

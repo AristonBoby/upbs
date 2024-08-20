@@ -124,7 +124,7 @@
                                             @foreach ($varitas as $no=>$item)
                                                 <tr>
                                                     <td>
-                                                        <select class="form-control" wire:model='idvaritas.{{ $no }}.varitas'>
+                                                        <select class="form-control" wire:model='idVaritas.{{ $no }}'>
                                                             <option value="" selected>-- Pilih Salah Satu --</option>
                                                             @foreach($jenis as $data)
                                                                 <option value={{$data->id}}>{{ $data->varitas }}</option>
@@ -143,7 +143,7 @@
                                                         <button type="button" class="btn btn-sm btn-primary" wire:click='remove({{ $no }})'>-</button>
                                                     </td>
                                                     <td class="text-center">
-                                                        <button type="button" class="btn btn-sm btn-primary" wire:click='varitasView({{ $no}})'>...</button>
+                                                        <button type="button" class="btn btn-sm btn-primary" wire:click='varitasView({{ $no}})' data-bs-toggle="modal" data-bs-target="#modalVaritas">...</button>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -154,6 +154,41 @@
                             <div class="d-grid gap-1">
                                 <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-save"></i> Simpan</button>
                             </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div wire:ignore.self class="modal fade" id="modalVaritas" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel"><i class="fa fa-edit text-sm"></i> Data Varitas</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form wire:submit="simpanVaritas">
+                        <div class="modal-body text-sm-start">
+                            <div class="row">
+                                <label class="col-form-label col-md-4">Varitas</label>
+                                <div class="col-md-8">
+                                    <select wire:model='modalVaritas' class="form-control form-control-sm rounded-0">
+                                            <option value="" selected>-- Pilih Salah Satu --</option>
+                                            @foreach ( $jenis as $data )
+                                                <option value="{{ $data->id }}">{{ $data->varitas }} </option>
+                                            @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-form-label col-md-4">Jumlah</label>
+                                <div class="col-md-8">
+                                    <input type="text" wire:model='modalJumlah' class="form-control form-control-sm rounded-0 number" placeholder="Jumlah">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="simpan" type="submit" class="btn btn-success">Simpan</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </div>
                     </form>
                 </div>

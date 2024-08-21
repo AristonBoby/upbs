@@ -125,7 +125,7 @@
                                             @foreach ($varitas as $no=>$item)
                                                 <tr>
                                                     <td>
-                                                        <select class="form-control" wire:model='idVaritas.{{ $no }}' disabled>
+                                                        <select class="form-control @error('idVaritas.'.$no) is-invalid @enderror"" wire:model='idVaritas.{{ $no }}' disabled>
                                                             <option value="" selected>-- Pilih Salah Satu --</option>
                                                             @foreach($jenis as $data)
                                                                 <option value={{$data->id}}>{{ $data->varitas }}</option>
@@ -136,9 +136,9 @@
                                                         <input type="text" class="form-control @error('jumlah.'.$no) is-invalid @enderror" wire:model='jumlah.{{ $no }}' disabled>
                                                     </td>
                                                     <td>
-                                                        <input type="text" wire:model='harga.{{$no}}' class="form-control" disabled>
+                                                        <input type="text" wire:model='harga.{{$no}}' class="form-control @error('harga.'.$no) is-invalid @enderror" disabled>
                                                     <td>
-                                                        <input type="text" wire:model='total.{{ $no }}' class="form-control" disabled>
+                                                        <input type="text" wire:model='total.{{ $no }}' class="form-control @error('total.'.$no) is-invalid @enderror" disabled>
                                                     </td>
                                                     <td class="text-center">
                                                         @if($no === 0)

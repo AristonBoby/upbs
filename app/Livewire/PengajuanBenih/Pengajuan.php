@@ -64,7 +64,11 @@ class Pengajuan extends Component
 
     public function add()
     {
-        $this->varitas[] +=1;
+        $q = count($this->varitas);
+        if($q < 3){
+            $this->varitas[] +=1;
+        }
+       
     }
 
     public function remove($id)
@@ -72,16 +76,30 @@ class Pengajuan extends Component
         unset($this->varitas[$id]);
         unset($this->jumlah[$id]);
         unset($this->harga[$id]);
+        unset($this->idVaritas[$id]);
+
 
     }
 
     protected $rules = [
-        'jumlah.*' => 'required',
+        'jumlah'        => 'array|required',
+        // 'jumlah.1'      => 'required',
+        // 'jumlah.2'      => 'required',
+        'harga.0'       => 'required',
+        'harga.1'       => 'required',
+        'harga.2'       => 'required',
+        'total.0'       => 'required',
+        'total.1'       => 'required',
+        'total.2'       => 'required',
+        'idVaritas.0'   => 'required',
+        'idVaritas.1'   => 'required',
+        'idVaritas.2'   => 'required',
     ];
 
     public function simpan()
     {
         $this->validate();
+        dd('dd');
     }
 
     public function jenisVaritas($no)

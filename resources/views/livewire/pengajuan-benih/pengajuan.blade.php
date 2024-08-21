@@ -119,12 +119,13 @@
                                             <th>Harga Satuan</th>
                                             <th>Total</th>
                                             <th class="text-center">*</th>
+                                            <th class="text-center"></th>
                                         </thead>
                                         <tbody>
                                             @foreach ($varitas as $no=>$item)
                                                 <tr>
                                                     <td>
-                                                        <select class="form-control" wire:model='idVaritas.{{ $no }}'>
+                                                        <select class="form-control" wire:model='idVaritas.{{ $no }}' disabled>
                                                             <option value="" selected>-- Pilih Salah Satu --</option>
                                                             @foreach($jenis as $data)
                                                                 <option value={{$data->id}}>{{ $data->varitas }}</option>
@@ -132,15 +133,20 @@
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <input type="text" class="form-control @error('jumlah.'.$no) is-invalid @enderror" wire:model='jumlah.{{ $no }}'>
+                                                        <input type="text" class="form-control @error('jumlah.'.$no) is-invalid @enderror" wire:model='jumlah.{{ $no }}' disabled>
                                                     </td>
                                                     <td>
-                                                        <input type="text" wire:model='harga.{{$no}}' class="form-control">
+                                                        <input type="text" wire:model='harga.{{$no}}' class="form-control" disabled>
                                                     <td>
-                                                        <input type="text" class="form-control" disabled>
+                                                        <input type="text" wire:model='total.{{ $no }}' class="form-control" disabled>
                                                     </td>
                                                     <td class="text-center">
-                                                        <button type="button" class="btn btn-sm btn-primary" wire:click='remove({{ $no }})'>-</button>
+                                                        @if($no === 0)
+                                                            
+                                                        @else
+                                                            <button type="button" class="btn btn-sm btn-danger" wire:click='remove({{ $no }})'><i class="fa fa-trash"></i></button>
+                                                        @endif
+                                                        
                                                     </td>
                                                     <td class="text-center">
                                                         <button type="button" class="btn btn-sm btn-primary" wire:click='varitasView({{ $no}})' data-bs-toggle="modal" data-bs-target="#modalVaritas">...</button>

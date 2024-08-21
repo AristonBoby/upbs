@@ -32,12 +32,14 @@ class Pengajuan extends Component
     public $modalVaritas;
     public $modalJumlah;
     public $modalHarga;
+    public $total;
 
     public function mount()
     {   $this->idVaritas =[0];
         $this->varitas=[0];
         $this->jumlah=[];
         $this->harga=[];
+        $this->total=[];
         $this->i = 0 ;
     }
 
@@ -74,22 +76,17 @@ class Pengajuan extends Component
     }
 
     protected $rules = [
-        'jumlah.0' => 'array|required',
+        'jumlah.*' => 'required',
     ];
 
     public function simpan()
     {
-        dd($this->idVaritas);
-        // $this->validate();
-        // $aray = array_values($this->jumlah);
-        // dd($aray);
+        $this->validate();
     }
 
     public function jenisVaritas($no)
     {
-         $query = tblVaritas::where('id',$this->idVaritas[$no])->first();
-         dd($this->idVaritas[$no]);
-            
+         $query = tblVaritas::where('id',$this->idVaritas[$no])->first();            
     }
 
     public function varitasView($id)
@@ -102,7 +99,9 @@ class Pengajuan extends Component
         $this->idVaritas[$this->i]  = $this->modalVaritas;
         $this->jumlah[$this->i]     = $this->modalJumlah;
         $query = tblVaritas::find($this->modalVaritas)->first();
-        dd($query); 
+        $this->harga[$this->i]      = $query->harga;
+        $this->total[$this->i]      = $query->harga * $this->modalJumlah;
+       
         
     }
 }

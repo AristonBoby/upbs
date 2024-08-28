@@ -7,7 +7,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div  class="card shadow mb-3 ">
-                                        <div class="card-header text-white bg-primary">
+                                        <div class="card-header ">
                                             <label class="card-title"><b>DATA PEMOHON</b></label>
                                         </div>
                                         <div class="card-body">
@@ -30,11 +30,49 @@
 
                                         </div>
                                     </div>
-
+                                    <div class="card card-primary mb-3 shadow">
+                                        <div class="card-header">
+                                            <b class="card-title">VARITAS</b >
+                                        </div>
+                                        <div class="cord-body p-3">
+                                            <button type="button" class="btn btn-sm btn-primary mb-3" wire:click='add()'>+ Tambah Varitas</button>
+                                            <table class="table table-sm table-bordered">
+                                                <thead>
+                                                    <th>Jenis Varitas</th>
+                                                    <th width="100">Jumlah</th>
+                                                    <th class="text-center"></th>
+                                                </thead>
+                                                <tbody >
+                                                    @foreach ($idvaritas as $no=>$item)
+                                                        <tr>
+                                                            <td>
+                                                                <select type="text" class="form-control @error('idvaritas.'.$no.'.varitas') is-invalid @enderror" wire:click.dela='datak()' wire:model='idvaritas.{{ $no }}.varitas' >
+                                                                        <option>-- Pilih Salah Satu --</option>
+                                                                        @foreach($jenis as $data)
+                                                                            <option value="{{$data->id}}">{{ $data->varitas }}</option>
+                                                                        @endforeach
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" class="form-control @error('idvaritas.'.$no.'.jumlah') is-invalid @enderror" wire:model='idvaritas.{{ $no }}.jumlah' >
+                                                            </td>
+                                                            <td class="text-center" width=30>
+                                                                @if($no === 0)
+                                                                    
+                                                                @else
+                                                                    <button type="button" class="btn btn-sm btn-danger" wire:click='remove({{ $no }})'><i class="fa fa-trash"></i></button>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div  class="card mb-3 shadow ">
-                                        <div class="card-header text-white bg-primary">
+                                        <div class="card-header">
                                             <label class="card-title"><b>JENIS PERMOHONAN</b></label>
                                         </div>
                                         <div class="card-body">
@@ -53,7 +91,7 @@
                                         </div>
                                     </div>
                                     <div class="card mb-3 shadow ">
-                                        <div class="card-header bg-primary text-white">
+                                        <div class="card-header ">
                                             <label class="card-title"><b>LOKASI TANAM BIBIT</b></label>
                                         </div>
                                         <div class="card-body">
@@ -104,59 +142,10 @@
                                             </div>
                                         </div>
                                     </div>
+                                    
                                 </div>
                             </div>
-                            <div class="card card-primary mb-3 shadow">
-                                <div class="card-header bg-success text-white">
-                                    <b class="card-title">Varitas</b >
-                                </div>
-                                <div class="cord-body p-3">
-                                    <button type="button" class="btn btn-sm btn-primary mb-3" wire:click='add()'>+ Tambah Varitas</button>
-                                    <table class="table table-sm table-bordered">
-                                        <thead>
-                                            <th>Jenis Varitas</th>
-                                            <th width="100">Jumlah</th>
-                                            <th>Harga Satuan</th>
-                                            <th>Total</th>
-                                            <th class="text-center">*</th>
-                                            <th class="text-center"></th>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($varitas as $no=>$item)
-                                                <tr>
-                                                    <td>
-                                                        <select class="form-control @error('idVaritas.'.$no) is-invalid @enderror"" wire:model='idVaritas.{{ $no }}' disabled>
-                                                            <option value="" selected>-- Pilih Salah Satu --</option>
-                                                            @foreach($jenis as $data)
-                                                                <option value={{$data->id}}>{{ $data->varitas }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" class="form-control @error('jumlah.'.$no) is-invalid @enderror" wire:model='jumlah.{{ $no }}' disabled>
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" wire:model='harga.{{$no}}' class="form-control @error('harga.'.$no) is-invalid @enderror" disabled>
-                                                    <td>
-                                                        <input type="text" wire:model='total.{{ $no }}' class="form-control @error('total.'.$no) is-invalid @enderror" disabled>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        @if($no === 0)
-                                                            
-                                                        @else
-                                                            <button type="button" class="btn btn-sm btn-danger" wire:click='remove({{ $no }})'><i class="fa fa-trash"></i></button>
-                                                        @endif
-                                                        
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <button type="button" class="btn btn-sm btn-primary" wire:click='varitasView({{ $no}})' data-bs-toggle="modal" data-bs-target="#modalVaritas">...</button>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                           
                             <div class="d-grid gap-1">
                                 <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-save"></i> Simpan</button>
                             </div>
@@ -178,7 +167,7 @@
                                 <label class="col-form-label col-md-4">Varitas</label>
                                 <div class="col-md-8">
                                     <select wire:model='modalVaritas' class="form-control form-control-sm rounded-0">
-                                            <option value="" selected>-- Pilih Salah Satu --</option>
+                                            <option value="" >-- Pilih Salah Satu --</option>
                                             @foreach ( $jenis as $data )
                                                 <option value="{{ $data->id }}">{{ $data->varitas }} </option>
                                             @endforeach

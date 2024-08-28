@@ -10,6 +10,8 @@ use App\Models\provinsi;
 use App\Models\tblVaritas;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Illuminate\Support\Facades\Validator;
+use Livewire\Attributes\Validate;
 
 class Pengajuan extends Component
 {
@@ -26,7 +28,8 @@ class Pengajuan extends Component
     public $i;
     public $jumlah;
     public $harga;
-    public $idVaritas;
+    public $idvaritas;
+    public $jenis;
 
     // Modal Variable //
     public $modalVaritas;
@@ -35,12 +38,13 @@ class Pengajuan extends Component
     public $total;
 
     public function mount()
-    {   $this->idVaritas =[0];
+    {   
         $this->varitas=[0];
-        $this->jumlah=[];
-        $this->harga=[];
-        $this->total=[];
         $this->i = 0 ;
+        $this->fill([
+            'idvaritas'=>collect([['varitas'=>'','jumlah'=>'','total'=>'','harga'=>'']])
+        ]);
+        $this->jenis    = tblVaritas::all();
     }
 
     public function render()
@@ -50,8 +54,8 @@ class Pengajuan extends Component
         $kota       = kota::where('provinsi_id',$this->varprovinsi)->get();
         $kecamatan  = kecamatan::where('kota_id',$this->varKota)->get();
         $kelurahan  = kelurahan::where('kecamatan_id',$this->varKecamatan)->get();
-        $varitas    = tblVaritas::all();
-        return view('livewire.pengajuan-benih.pengajuan',['provinsi'=>$provinsi,'kota'=>$kota,'kecamatan'=>$kecamatan,'kelurahan'=>$kelurahan,'jenis'=>$varitas]);
+        
+        return view('livewire.pengajuan-benih.pengajuan',['provinsi'=>$provinsi,'kota'=>$kota,'kecamatan'=>$kecamatan,'kelurahan'=>$kelurahan]);
     }
 
     public function dataUser()
@@ -64,47 +68,34 @@ class Pengajuan extends Component
 
     public function add()
     {
-        $q = count($this->varitas);
-        if($q < 3){
-            $this->varitas[] +=1;
-        }
-       
-    }
+        $this->idvaritas->push(['varitas'=>'','jumlah'=>'','total'=>'','harga'=>'']);
+    }   
 
     public function remove($id)
     {
         unset($this->varitas[$id]);
         unset($this->jumlah[$id]);
         unset($this->harga[$id]);
-        unset($this->idVaritas[$id]);
-
-
+        unset($this->idvaritas[$id]);
     }
 
-    protected $rules = [
-        'jumlah'        => 'array|required',
-        // 'jumlah.1'      => 'required',
-        // 'jumlah.2'      => 'required',
-        'harga.0'       => 'required',
-        'harga.1'       => 'required',
-        'harga.2'       => 'required',
-        'total.0'       => 'required',
-        'total.1'       => 'required',
-        'total.2'       => 'required',
-        'idVaritas.0'   => 'required',
-        'idVaritas.1'   => 'required',
-        'idVaritas.2'   => 'required',
-    ];
+    // public function updatingIdvaritas($value, $key){
+    //     $query = tblVaritas::where('id',$value)->first();
+    //     $q = explode('.', $key);    
+    //     $keys = $q[0];
+    //     $this->idvaritas[$keys] = array('harga'=>$query->harga);
+    // }
 
     public function simpan()
-    {
-        $this->validate();
-        dd('dd');
+    {   
+            $this->validate([
+                'idvaritas.*.jumlah'        => 'required',
+                'idvaritas.*.varitas'       => 'required',
+            ]);
     }
-
     public function jenisVaritas($no)
     {
-         $query = tblVaritas::where('id',$this->idVaritas[$no])->first();            
+         $query = tblVaritas::where('id',$this->idvaritas[$no])->first();            
     }
 
     public function varitasView($id)
@@ -114,7 +105,7 @@ class Pengajuan extends Component
 
     public function simpanVaritas ()
     {
-        $this->idVaritas[$this->i]  = $this->modalVaritas;
+        $this->idvaritas[$this->i]  = $this->modalVaritas;
         $this->jumlah[$this->i]     = $this->modalJumlah;
         $query = tblVaritas::find($this->modalVaritas)->first();
         $this->harga[$this->i]      = $query->harga;

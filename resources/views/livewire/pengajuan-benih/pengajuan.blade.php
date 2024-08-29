@@ -177,7 +177,7 @@
                             <div class="row">
                                 <label class="col-form-label col-md-4">Jumlah</label>
                                 <div class="col-md-8">
-                                    <input type="text" wire:model='modalJumlah' class="form-control form-control-sm rounded-0 number" placeholder="Jumlah">
+                                    <input type="number" id="number" wire:model='modalJumlah' class="form-control form-control-sm rounded-0 number" placeholder="Jumlah">
                                 </div>
                             </div>
                         </div>

@@ -51,6 +51,12 @@ class FormVaritas extends Component
         }
     }
 
+    public function update()
+    {
+
+        
+    }
+
     public function resetForm()
     {
         $this->varVaritas   = '';

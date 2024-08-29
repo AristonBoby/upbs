@@ -72,7 +72,7 @@
                             <div class="col-md-8">
                                 <select wire:model='kategori' class="form-control form-control-sm rounded-0">
                                         <option value="" selected>-- Pilih Salah Satu --</option>
-                                    @forelse ( $kat as $data )
+                                    @forelse ( $kategori as $data )
                                         <option value="{{ $data->id }}">{{ $data->kategori }}</option>
                                     @empty
                                         <option value="" selected> -- Data Tidak ditemukan</option>
@@ -90,8 +90,8 @@
                             <label class="col-md-4">Status</label>
                             <div class="col-md-8">
                                 <div class="form-check form-switch">
-                                    <input wire:model='status' value="{{ $status }}" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" @if($status=='1') checked @endif>
-                                    <label class="form-check-label" for="flexSwitchCheckChecked">@if($status=='1' || $status===1) Aktif @endif @if($status=='0') Tidak Aktif @endif</label>
+                                    <input wire:model='varStatus' value="{{ $varStatus }}" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" @if($varStatus=='1') checked @endif>
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">@if($varStatus=='1' || $varStatus===1) Aktif @endif @if($varStatus=='0') Tidak Aktif @endif</label>
                                 </div>
                             </div>
                         </div>

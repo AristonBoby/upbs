@@ -37,6 +37,12 @@ class Pengajuan extends Component
     public $modalHarga;
     public $total;
 
+    ///
+
+    public $varTglpengambilan;
+    public $varPembayaran;
+    public $varProvinsi;
+
     public function mount()
     {   
         $this->varitas=[0];
@@ -89,8 +95,14 @@ class Pengajuan extends Component
     public function simpan()
     {   
             $this->validate([
-                'idvaritas.*.jumlah'        => 'required',
-                'idvaritas.*.varitas'       => 'required',
+                'idvaritas.*.jumlah'        =>  'required',
+                'idvaritas.*.varitas'       =>  'required',
+                'varTglpengambilan'         =>  'required',
+                'varPembayaran'             =>  'required',
+                'varProvinsi'               =>  'required',
+                'varKota'                   =>  'required',
+                'varKecamatan'              =>  'required', 
+                'varKelurahan'              =>  'required',
             ]);
     }
     public function jenisVaritas($no)

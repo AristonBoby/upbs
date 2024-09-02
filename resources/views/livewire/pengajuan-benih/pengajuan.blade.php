@@ -77,16 +77,18 @@
                                         </div>
                                         <div class="card-body">
                                             <div class="form-floating mb-3">
-                                                <select type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                                                <select type="password" class="form-control @error('varPembayaran') is-invalid @enderror" id="floatingPassword" wire:model='varPembayaran' placeholder="Password">
                                                     <option>-- Pilih Salah Satu --</option>
                                                     <option>Membeli Bibit/Benih</option>
                                                     <option>Bahan Diseminisasi</option>
                                                 </select>
                                                 <label for="floatingPassword">Jenis</label>
+                                                @error('varTglpengambilan') <span class="text-danger">{{ $message }}</span>@enderror
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input type="date" class="form-control" placeholder="dd/MM/YYYY">
+                                                <input type="date" class="form-control @error('varTglpengambilan') is-invalid @enderror" placeholder="dd/MM/YYYY" wire:model='varTglpengambilan'>
                                                 <label>Rencana Tanggal Pengambilan</label>
+                                                @error('varTglpengambilan') <span class="text-danger">{{ $message }}</span>@enderror
                                             </div>
                                         </div>
                                     </div>
@@ -97,19 +99,20 @@
                                         <div class="card-body">
                                             <div class="form-group mb-3">
                                                 <b class="col-md-3">Provinsi</b>
-                                                <select wire:model.live='varprovinsi' class="form-control">
+                                                <select wire:model.live='varprovinsi' class="form-control @error('varProvinsi') is-invalid @enderror" wire:model='varProvinsi'>  
                                                     <option selected value="">-- Pilih Salah Satu --</option>
                                                     @forelse ( $provinsi as $data )
                                                         <option value="{{ $data->id }}">{{ $data->provinsi }}</option>
                                                     @empty
-                                                    <option selected value="">-- Data Tidak ditemukan --</option>
+                                                        <option selected value="">-- Data Tidak ditemukan --</option>
                                                     @endforelse
 
                                                 </select>
+                                                @error('varProvinsi') <span class="text-danger">{{ $message }}</span>@enderror
                                             </div>
                                             <div class="form-group mb-3">
                                                 <b class="col-md-3">Kota/Kab</b>
-                                                    <select wire:model.live='varKota' class="form-control">
+                                                    <select wire:model.live='varKota' class="form-control @error('varKota') is-invalid @enderror">
                                                         <option selected>-- Pilih Salah Satu --</option>
                                                         @forelse ( $kota as $data )
                                                             <option value="{{ $data->id }}">{{ $data->kota }}</option>
@@ -120,7 +123,7 @@
                                             </div>
                                             <div class="form-group mb-3">
                                                 <b class="col-md-3">Kecamatan</b>
-                                                <select wire:model.live='varKecamatan' class="form-control">
+                                                <select wire:model.live='varKecamatan' class="form-control @error('varKecamatan') is-invalid @enderror">
                                                     <option selected>-- Pilih Salah Satu --</option>
                                                     @forelse ( $kecamatan as $data )
                                                         <option value="{{ $data->id }}">{{ $data->kecamatan }}</option>
@@ -131,7 +134,7 @@
                                             </div>
                                             <div class="form-group mb-3">
                                                 <b class="col-md-3">Kelurahan/Desa</b>
-                                                <select wire:model.live='varKelurahan' class="form-control">
+                                                <select wire:model.live='varKelurahan' class="form-control @error('varKelurahan') is-invalid @enderror">
                                                     <option selected>-- Pilih Salah Satu --</option>
                                                     @forelse ( $kelurahan as $data )
                                                         <option value="{{ $data->id }}">{{ $data->kelurahan }}</option>

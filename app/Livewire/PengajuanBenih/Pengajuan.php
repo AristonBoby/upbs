@@ -91,10 +91,18 @@ class Pengajuan extends Component
     //     $keys = $q[0];
     //     $this->idvaritas[$keys] = array('harga'=>$query->harga);
     // }
+    protected $messages = [
+        'varTglpengambilan.required'    =>  'Data Tanggal Pengambilan Wajib diisi !!! ',
+        'varPembayaran.required'        =>  'Data Jenis Wajib diisi !!! ',
+        'varProvinsi.required'          =>  'Data Provinsi Wajib diisi !!!',
+        'varKota.required'              =>  'Data Kota Wajib diisi !!!',
+        'varKecamatan.required'         =>  'Data Kecamatan Waib diisi !!!',
+        'varKelurahan.required'         =>  'Data Kelurahan Wajib diisi !!!',
+    ];
 
     public function simpan()
     {   
-            $this->validate([
+            $this->validate([ 
                 'idvaritas.*.jumlah'        =>  'required',
                 'idvaritas.*.varitas'       =>  'required',
                 'varTglpengambilan'         =>  'required',
@@ -104,6 +112,8 @@ class Pengajuan extends Component
                 'varKecamatan'              =>  'required', 
                 'varKelurahan'              =>  'required',
             ]);
+
+           
     }
     public function jenisVaritas($no)
     {

@@ -38,8 +38,8 @@
                                             <button type="button" class="btn btn-sm btn-primary mb-3" wire:click='add()'>+ Tambah Varitas</button>
                                             <table class="table table-sm table-bordered">
                                                 <thead>
-                                                    <th>Jenis Varitas</th>
-                                                    <th width="100">Jumlah</th>
+                                                    <th>Jenis Varitas  <span class="text-danger">*</th>
+                                                    <th width="100">Jumlah  <span class="text-danger">*</th>
                                                     <th class="text-center"></th>
                                                 </thead>
                                                 <tbody >
@@ -82,12 +82,12 @@
                                                     <option>Membeli Bibit/Benih</option>
                                                     <option>Bahan Diseminisasi</option>
                                                 </select>
-                                                <label for="floatingPassword">Jenis</label>
-                                                @error('varTglpengambilan') <span class="text-danger">{{ $message }}</span>@enderror
+                                                <label for="floatingPassword">Jenis  <span class="text-danger">*</label>
+                                                @error('varPembayaran') <span class="text-danger">{{ $message }}</span>@enderror
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <input type="date" class="form-control @error('varTglpengambilan') is-invalid @enderror" placeholder="dd/MM/YYYY" wire:model='varTglpengambilan'>
-                                                <label>Rencana Tanggal Pengambilan</label>
+                                                <label>Rencana Tanggal Pengambilan  <span class="text-danger">*</label>
                                                 @error('varTglpengambilan') <span class="text-danger">{{ $message }}</span>@enderror
                                             </div>
                                         </div>
@@ -98,7 +98,7 @@
                                         </div>
                                         <div class="card-body">
                                             <div class="form-group mb-3">
-                                                <b class="col-md-3">Provinsi</b>
+                                                <b class="col-md-3">Provinsi  <span class="text-danger">*</b>
                                                 <select wire:model.live='varprovinsi' class="form-control @error('varProvinsi') is-invalid @enderror" wire:model='varProvinsi'>  
                                                     <option selected value="">-- Pilih Salah Satu --</option>
                                                     @forelse ( $provinsi as $data )
@@ -111,7 +111,7 @@
                                                 @error('varProvinsi') <span class="text-danger">{{ $message }}</span>@enderror
                                             </div>
                                             <div class="form-group mb-3">
-                                                <b class="col-md-3">Kota/Kab</b>
+                                                <b class="col-md-3">Kota/Kab  <span class="text-danger">*</b>
                                                     <select wire:model.live='varKota' class="form-control @error('varKota') is-invalid @enderror">
                                                         <option selected>-- Pilih Salah Satu --</option>
                                                         @forelse ( $kota as $data )
@@ -120,9 +120,10 @@
                                                             <option selected value="">-- Data Tidak ditemukan --</option>
                                                         @endforelse
                                                     </select>
+                                                    @error('varKota') <span class="text-danger">{{ $message }}</span>@enderror
                                             </div>
                                             <div class="form-group mb-3">
-                                                <b class="col-md-3">Kecamatan</b>
+                                                <b class="col-md-3">Kecamatan  <span class="text-danger">*</b>
                                                 <select wire:model.live='varKecamatan' class="form-control @error('varKecamatan') is-invalid @enderror">
                                                     <option selected>-- Pilih Salah Satu --</option>
                                                     @forelse ( $kecamatan as $data )
@@ -131,9 +132,10 @@
                                                         <option selected value="">-- Data Tidak ditemukan --</option>
                                                     @endforelse
                                                 </select>
+                                                @error('varKecamatan') <span class="text-danger">{{ $message }}</span>@enderror
                                             </div>
                                             <div class="form-group mb-3">
-                                                <b class="col-md-3">Kelurahan/Desa</b>
+                                                <b class="col-md-3">Kelurahan/Desa  <span class="text-danger">*</b>
                                                 <select wire:model.live='varKelurahan' class="form-control @error('varKelurahan') is-invalid @enderror">
                                                     <option selected>-- Pilih Salah Satu --</option>
                                                     @forelse ( $kelurahan as $data )
@@ -142,6 +144,8 @@
                                                         <option>-- Data Tidak ditemukan --</option>
                                                     @endforelse
                                                 </select>
+                                                @error('varKelurahan') <span class="text-danger">{{ $message }}</span>@enderror
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -167,7 +171,7 @@
                     <form wire:submit="simpanVaritas">
                         <div class="modal-body text-sm-start">
                             <div class="row">
-                                <label class="col-form-label col-md-4">Varitas</label>
+                                <label class="col-form-label col-md-4">Varitas  <span class="text-danger">*</label>
                                 <div class="col-md-8">
                                     <select wire:model='modalVaritas' class="form-control form-control-sm rounded-0">
                                             <option value="" >-- Pilih Salah Satu --</option>
@@ -178,7 +182,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-form-label col-md-4">Jumlah</label>
+                                <label class="col-form-label col-md-4">Jumlah  <span class="text-danger">*</label>
                                 <div class="col-md-8">
                                     <input type="number" id="number" wire:model='modalJumlah' class="form-control form-control-sm rounded-0 number" placeholder="Jumlah">
                                 </div>

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignIdFor(kelurahan::class);
             $table->foreignIdFor(jenispembayaran::class);
             $table->char('status',2);
+            $table->date('tglPengambilan');;
             $table->softDeletes();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');

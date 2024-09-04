@@ -14,5 +14,7 @@ class tblPengajuan extends Model
         'user_id',
         'kelurahan_id',
         'status',
+        'jenispembayaran_id',
+        'tglPengambilan'
     ];
 }

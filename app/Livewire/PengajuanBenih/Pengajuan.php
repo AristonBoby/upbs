@@ -11,6 +11,7 @@ use App\Models\tblVaritas;
 use Illuminate\Support\Str;
 use App\Models\tblPengajuan;
 use App\Http\Controllers\varitas;
+use App\Models\jenispembayaran;
 use App\Models\User;
 use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\Auth;
@@ -47,7 +48,7 @@ class Pengajuan extends Component
     public $varProvinsi;
 
     public function mount()
-    {   
+    {
         $this->varitas=[0];
         $this->i = 0 ;
         $this->fill([
@@ -63,8 +64,9 @@ class Pengajuan extends Component
         $kota       = kota::where('provinsi_id',$this->varprovinsi)->get();
         $kecamatan  = kecamatan::where('kota_id',$this->varKota)->get();
         $kelurahan  = kelurahan::where('kecamatan_id',$this->varKecamatan)->get();
-        
-        return view('livewire.pengajuan-benih.pengajuan',['provinsi'=>$provinsi,'kota'=>$kota,'kecamatan'=>$kecamatan,'kelurahan'=>$kelurahan]);
+        $pembayaran = jenispembayaran::all();
+
+        return view('livewire.pengajuan-benih.pengajuan',['provinsi'=>$provinsi,'kota'=>$kota,'kecamatan'=>$kecamatan,'kelurahan'=>$kelurahan,'pembayaran'=>$pembayaran]);
     }
 
     public function dataUser()
@@ -78,7 +80,7 @@ class Pengajuan extends Component
     public function add()
     {
         $this->idvaritas->push(['varitas'=>'','jumlah'=>'','total'=>'','harga'=>'']);
-    }   
+    }
 
     public function remove($id)
     {
@@ -90,7 +92,7 @@ class Pengajuan extends Component
 
     // public function updatingIdvaritas($value, $key){
     //     $query = tblVaritas::where('id',$value)->first();
-    //     $q = explode('.', $key);    
+    //     $q = explode('.', $key);
     //     $keys = $q[0];
     //     $this->idvaritas[$keys] = array('harga'=>$query->harga);
     // }
@@ -104,28 +106,30 @@ class Pengajuan extends Component
     ];
 
     public function simpan()
-    {       
-            // $this->validate([ 
+    {   dd(count($this->idvaritas));
+            // $this->validate([
             //     'idvaritas.*.jumlah'        =>  'required',
             //     'idvaritas.*.varitas'       =>  'required',
             //     'varTglpengambilan'         =>  'required',
             //     'varPembayaran'             =>  'required',
             //     'varProvinsi'               =>  'required',
             //     'varKota'                   =>  'required',
-            //     'varKecamatan'              =>  'required', 
+            //     'varKecamatan'              =>  'required',
             //     'varKelurahan'              =>  'required',
             // ]);
 
             $query = tblPengajuan::create([
-                'id'    => Str::uuid(),
-                'user_id'=> Auth::User()->id,
-                'kelurahan_id'  => $this->varKelurahan,
-                'status'    =>'2',
+                'id'                    => Str::uuid(),
+                'user_id'               => Auth::User()->id,
+                'kelurahan_id'          => $this->varKelurahan,
+                'status'                => 1,
+                'jenispembayaran_id'    => 1,
+                'tglPengambilan'        => $this->varTglpengambilan,
             ]);
     }
     public function jenisVaritas($no)
     {
-         $query = tblVaritas::where('id',$this->idvaritas[$no])->first();            
+         $query = tblVaritas::where('id',$this->idvaritas[$no])->first();
     }
 
     public function varitasView($id)
@@ -140,7 +144,7 @@ class Pengajuan extends Component
         $query = tblVaritas::find($this->modalVaritas)->first();
         $this->harga[$this->i]      = $query->harga;
         $this->total[$this->i]      = $query->harga * $this->modalJumlah;
-       
-        
+
+
     }
 }

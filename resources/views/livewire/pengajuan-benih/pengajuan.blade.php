@@ -58,7 +58,7 @@
                                                             </td>
                                                             <td class="text-center" width=30>
                                                                 @if($no === 0)
-                                                                    
+
                                                                 @else
                                                                     <button type="button" class="btn btn-sm btn-danger" wire:click='remove({{ $no }})'><i class="fa fa-trash"></i></button>
                                                                 @endif
@@ -78,9 +78,11 @@
                                         <div class="card-body">
                                             <div class="form-floating mb-3">
                                                 <select type="password" class="form-control @error('varPembayaran') is-invalid @enderror" id="floatingPassword" wire:model='varPembayaran' placeholder="Password">
-                                                    <option>-- Pilih Salah Satu --</option>
-                                                    <option>Membeli Bibit/Benih</option>
-                                                    <option>Bahan Diseminisasi</option>
+                                                    <option value="">-- Pilih Salah Satu --</option>
+                                                    @foreach ($pembayaran as $data )
+                                                    <option value="{{ $data->id }}">{{ $data->pembayaran }}</option>
+                                                    @endforeach
+
                                                 </select>
                                                 <label for="floatingPassword">Jenis  <span class="text-danger">*</label>
                                                 @error('varPembayaran') <span class="text-danger">{{ $message }}</span>@enderror
@@ -99,7 +101,7 @@
                                         <div class="card-body">
                                             <div class="form-group mb-3">
                                                 <b class="col-md-3">Provinsi  <span class="text-danger">*</b>
-                                                <select wire:model.live='varprovinsi' class="form-control @error('varProvinsi') is-invalid @enderror" wire:model='varProvinsi'>  
+                                                <select wire:model.live='varprovinsi' class="form-control @error('varProvinsi') is-invalid @enderror" wire:model='varProvinsi'>
                                                     <option selected value="">-- Pilih Salah Satu --</option>
                                                     @forelse ( $provinsi as $data )
                                                         <option value="{{ $data->id }}">{{ $data->provinsi }}</option>
@@ -145,14 +147,14 @@
                                                     @endforelse
                                                 </select>
                                                 @error('varKelurahan') <span class="text-danger">{{ $message }}</span>@enderror
-                                                
+
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                             </div>
-                           
+
                             <div class="d-grid gap-1">
                                 <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-save"></i> Simpan</button>
                             </div>

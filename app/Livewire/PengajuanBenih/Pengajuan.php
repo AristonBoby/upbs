@@ -2,17 +2,19 @@
 
 namespace App\Livewire\PengajuanBenih;
 
-use App\Http\Controllers\varitas;
+use App\Models\kota;
+use Livewire\Component;
+use App\Models\provinsi;
 use App\Models\kecamatan;
 use App\Models\kelurahan;
-use App\Models\kota;
-use App\Models\provinsi;
-use App\Models\tblPengajuan;
 use App\Models\tblVaritas;
-use Illuminate\Support\Facades\Auth;
-use Livewire\Component;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+use App\Models\tblPengajuan;
+use App\Http\Controllers\varitas;
+use App\Models\User;
 use Livewire\Attributes\Validate;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class Pengajuan extends Component
 {
@@ -102,20 +104,23 @@ class Pengajuan extends Component
     ];
 
     public function simpan()
-    {   
-            $this->validate([ 
-                'idvaritas.*.jumlah'        =>  'required',
-                'idvaritas.*.varitas'       =>  'required',
-                'varTglpengambilan'         =>  'required',
-                'varPembayaran'             =>  'required',
-                'varProvinsi'               =>  'required',
-                'varKota'                   =>  'required',
-                'varKecamatan'              =>  'required', 
-                'varKelurahan'              =>  'required',
-            ]);
-            
-            $query = tblPengajuan::create([
+    {       
+            // $this->validate([ 
+            //     'idvaritas.*.jumlah'        =>  'required',
+            //     'idvaritas.*.varitas'       =>  'required',
+            //     'varTglpengambilan'         =>  'required',
+            //     'varPembayaran'             =>  'required',
+            //     'varProvinsi'               =>  'required',
+            //     'varKota'                   =>  'required',
+            //     'varKecamatan'              =>  'required', 
+            //     'varKelurahan'              =>  'required',
+            // ]);
 
+            $query = tblPengajuan::create([
+                'id'    => Str::uuid(),
+                'user_id'=> Auth::User()->id,
+                'kelurahan_id'  => $this->varKelurahan,
+                'status'    =>'2',
             ]);
     }
     public function jenisVaritas($no)

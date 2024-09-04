@@ -7,6 +7,7 @@ use App\Models\kecamatan;
 use App\Models\kelurahan;
 use App\Models\kota;
 use App\Models\provinsi;
+use App\Models\tblPengajuan;
 use App\Models\tblVaritas;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -112,8 +113,10 @@ class Pengajuan extends Component
                 'varKecamatan'              =>  'required', 
                 'varKelurahan'              =>  'required',
             ]);
+            
+            $query = tblPengajuan::create([
 
-           
+            ]);
     }
     public function jenisVaritas($no)
     {

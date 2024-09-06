@@ -16,10 +16,11 @@ class tblVaritas extends Model
         'tblkat_varitas_id',
         'status'
     ];
-
+    protected $dates = ['deleted_at'];
+    
     public function tblkat ()
     {
-        return $this->belongsTo('App\Models\tblkatVaritas','tblkat_varitas_id','id');
+        return $this->hashOne('App\Models\tblkatVaritas','tblkat_varitas_id','id');
     }
-    protected $dates = ['deleted_at'];
+
 }

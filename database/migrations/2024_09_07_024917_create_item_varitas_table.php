@@ -15,9 +15,11 @@ return new class extends Migration
     {
         Schema::create('item_varitas', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(tblPengajuan::class);
+            $table->foreignUuid('tbl_pengajuan_id');
             $table->foreignIdFor(tblVaritas::class);
-            $table->foreign('tbl_pengajuan_id')->references('id')->on('tbl_varitas');
+            $table->foreign('tbl_pengajuan_id')->references('id')->on('tbl_pengajuans')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('tbl_varitas_id')->references('id')->on('tbl_varitas');
+            $table->bigInteger('jumlah');
             $table->timestamps();
         });
     }

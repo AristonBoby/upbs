@@ -3,16 +3,17 @@
 namespace App\Livewire\PengajuanBenih;
 
 use App\Models\kota;
+use App\Models\User;
 use Livewire\Component;
 use App\Models\provinsi;
 use App\Models\kecamatan;
 use App\Models\kelurahan;
 use App\Models\tblVaritas;
+use App\Models\itemVaritas;
 use Illuminate\Support\Str;
 use App\Models\tblPengajuan;
-use App\Http\Controllers\varitas;
 use App\Models\jenispembayaran;
-use App\Models\User;
+use App\Http\Controllers\varitas;
 use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -47,12 +48,13 @@ class Pengajuan extends Component
     public $varPembayaran;
     public $varProvinsi;
 
+    public $totalBayar;
     public function mount()
     {
         $this->varitas=[0];
         $this->i = 0 ;
         $this->fill([
-            'idvaritas'=>collect([['varitas'=>'','jumlah'=>'']])
+            'idvaritas'=>collect([['varitas'=>'','jumlah'=>'','lokasiTanam'=>'']])
         ]);
         $this->jenis    = tblVaritas::all();
     }
@@ -79,7 +81,7 @@ class Pengajuan extends Component
 
     public function add()
     {
-        $this->idvaritas->push(['varitas'=>'','jumlah'=>'','total'=>'','harga'=>'']);
+        $this->idvaritas->push(['varitas'=>'','jumlah'=>'']);
     }
 
     public function remove($id)
@@ -106,28 +108,51 @@ class Pengajuan extends Component
     ];
 
     public function simpan()
-    {   foreach ($this->idvaritas as $key => $value) {
-        dd($value);
-    }
-            // $this->validate([
-            //     'idvaritas.*.jumlah'        =>  'required',
-            //     'idvaritas.*.varitas'       =>  'required',
-            //     'varTglpengambilan'         =>  'required',
-            //     'varPembayaran'             =>  'required',
-            //     'varProvinsi'               =>  'required',
-            //     'varKota'                   =>  'required',
-            //     'varKecamatan'              =>  'required',
-            //     'varKelurahan'              =>  'required',
-            // ]);
-
+    {      
+        $q = itemVaritas::where('id',1)->get();
+       // dd($q);
+        foreach($q as $data)
+        {   
+            $this->totalBayar += $data->jumlah * $data->relasitblvaritas->harga;
+        }
+            dd($this->totalBayar);
+        
+        $this->validate([
+                'idvaritas.*.jumlah'        =>  'required',
+                'idvaritas.*.varitas'       =>  'required',
+                'varTglpengambilan'         =>  'required',
+                'varPembayaran'             =>  'required',
+                'varProvinsi'               =>  'required',
+                'varKota'                   =>  'required',
+                'varKecamatan'              =>  'required',
+                'varKelurahan'              =>  'required',
+            ]);
+            $id = Str::uuid();
+          //  dd($id);
             $query = tblPengajuan::create([
-                'id'                    => Str::uuid(),
+                'id'                    => $id,
                 'user_id'               => Auth::User()->id,
                 'kelurahan_id'          => $this->varKelurahan,
                 'status'                => 1,
                 'jenispembayaran_id'    => 1,
                 'tglPengambilan'        => $this->varTglpengambilan,
             ]);
+
+            if($query)
+            {
+               
+                foreach($this->idvaritas as $data)
+                {
+                    $query = itemVaritas::create([
+                      
+                        'tbl_pengajuan_id' => $id,
+                        'tbl_varitas_id'   => $data['varitas'],
+                        'jumlah'           => $data['jumlah'],
+                        
+                    ]);
+                    
+                }
+            }
     }
     public function jenisVaritas($no)
     {

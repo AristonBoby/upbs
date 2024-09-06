@@ -52,7 +52,7 @@ class Pengajuan extends Component
         $this->varitas=[0];
         $this->i = 0 ;
         $this->fill([
-            'idvaritas'=>collect([['varitas'=>'','jumlah'=>'','total'=>'','harga'=>'']])
+            'idvaritas'=>collect([['varitas'=>'','jumlah'=>'']])
         ]);
         $this->jenis    = tblVaritas::all();
     }
@@ -106,7 +106,9 @@ class Pengajuan extends Component
     ];
 
     public function simpan()
-    {   dd(count($this->idvaritas));
+    {   foreach ($this->idvaritas as $key => $value) {
+        dd($value);
+    }
             // $this->validate([
             //     'idvaritas.*.jumlah'        =>  'required',
             //     'idvaritas.*.varitas'       =>  'required',

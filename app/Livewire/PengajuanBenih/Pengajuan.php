@@ -49,6 +49,7 @@ class Pengajuan extends Component
     public $varProvinsi;
 
     public $totalBayar;
+    
     public function mount()
     {
         $this->varitas=[0];
@@ -108,10 +109,11 @@ class Pengajuan extends Component
     ];
 
     public function simpan()
-    {      
-        
-        
-        
+    {   
+        $q = tblPengajuan::where('id','139107bd-2f2d-4d37-a3ad-d998de08cbd3')->first();
+        dd($q->relasiitemvaritas);
+
+
         $this->validate([
                 'idvaritas.*.jumlah'        =>  'required',
                 'idvaritas.*.varitas'       =>  'required',
@@ -123,7 +125,6 @@ class Pengajuan extends Component
                 'varKelurahan'              =>  'required',
             ]);
             $id = Str::uuid();
-          //  dd($id);
             $query = tblPengajuan::create([
                 'id'                    => $id,
                 'user_id'               => Auth::User()->id,
@@ -132,13 +133,11 @@ class Pengajuan extends Component
                 'jenispembayaran_id'    => 1,
                 'tglPengambilan'        => $this->varTglpengambilan,
             ]);
-
             if($query)
             {
-               
                 foreach($this->idvaritas as $data)
                 {
-                    $querytotal =   tblVaritas::where('id',$data['varitas'])->first();
+                    $querytotal = tblVaritas::where('id',$data['varitas'])->first();
                     $query = itemVaritas::create([
                       
                         'tbl_pengajuan_id' => $id,
@@ -146,16 +145,24 @@ class Pengajuan extends Component
                         'jumlah'           => $data['jumlah'],
                         'total'            => $data['jumlah'] * $querytotal->harga,
                         'status'           => 'ok',
-                    ]);
+                    ]);          
+                }
+            
+                $queryHarga = itemVaritas::where('tbl_pengajuan_id',$id)->get();
 
-                   
+                foreach($queryHarga as $data)
+                {
+                    $this->totalBayar += $data->total;
                 }
-                $q = itemVaritas::where('tbl_pengajuan_id',$id)->get();
-                foreach($q as $data)
-                {   
-                    $this->totalBayar += $data->jumlah * $data->relasitblvaritas->harga;
+                
+                $data = tblPengajuan::where('id',$id)->update([
+                    'harga' => $this->totalBayar,
+                ]);
+
+                if($data)
+                {
+                    $this->dispatch('alert',text:'Data Berhasil Disimpan !!!',icon:'success',title:'Berhasil',timer:2000);
                 }
-                dd($this->totalBayar);
             }
     }
     public function jenisVaritas($no)

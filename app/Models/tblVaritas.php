@@ -20,7 +20,7 @@ class tblVaritas extends Model
     
     public function tblkat ()
     {
-        return $this->hashOne('App\Models\tblkatVaritas','tblkat_varitas_id','id');
+        return $this->belongsTo('App\Models\tblkatVaritas','tblkat_varitas_id','id');
     }
 
 }

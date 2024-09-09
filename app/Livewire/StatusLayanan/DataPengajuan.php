@@ -14,13 +14,14 @@ class DataPengajuan extends Component
 
     public function render()
     {   
-        $query = tblPengajuan::where('user.name',$this->idModal)->first();
-        $data = tblPengajuan::select('id')->where('status',1)->whereHas('user',function($query){
-            $query->where('name','LIKE','%'.$this->pencarian.'%')->orWhere('alamat','LIKE','%'.$this->pencarian.'%')->select('name');
-        })->paginate(10);
+        $data = tblPengajuan::paginate(10);
+     
+        $data = tblPengajuan::where('status',1)->whereHas('user',function($query){
+                $query->where('name','LIKE','%'.$this->pencarian.'%')->orWhere('alamat','LIKE','%'.$this->pencarian.'%');
+            })->paginate(10);
     
 
-        return view('livewire.status-layanan.data-pengajuan',['datapengajuan'=>$data,'detaiId'=>$query]);
+        return view('livewire.status-layanan.data-pengajuan',['datapengajuan'=>$data]);
     }
 
     public function updatingPencarian()

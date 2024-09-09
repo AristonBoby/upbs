@@ -35,7 +35,7 @@
                             @forelse ( $datapengajuan as $no=>$data)
                                 <tr>
                                     <td>{{ $no+1 }}.</td>
-                                    <td>{{ $data->id }}</td>   
+                                    <td>{{ $data->user->name }}</td>   
                                     <td>{{ $data->tglPengambilan }}</td>
                                     <td>{{ $data->harga }}</td>
                                     <td>{{ $data->jenispembayaran_id }}</td>

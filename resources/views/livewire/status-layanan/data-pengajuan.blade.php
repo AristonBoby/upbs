@@ -71,7 +71,7 @@
             </div>
             <div class="modal-body">
               <div class="container">
-               { {$detaiId}}
+               {{$dataModal}}
               
               </div>
             <div class="modal-footer">

@@ -14,14 +14,11 @@ class DataPengajuan extends Component
 
     public function render()
     {   
-        $data = tblPengajuan::paginate(10);
-     
+        $modal = tblPengajuan::where('id',$this->idModal)->first();
         $data = tblPengajuan::where('status',1)->whereHas('user',function($query){
                 $query->where('name','LIKE','%'.$this->pencarian.'%')->orWhere('alamat','LIKE','%'.$this->pencarian.'%');
             })->paginate(10);
-    
-
-        return view('livewire.status-layanan.data-pengajuan',['datapengajuan'=>$data]);
+        return view('livewire.status-layanan.data-pengajuan',['datapengajuan'=>$data,'dataModal'=>$modal]);
     }
 
     public function updatingPencarian()
@@ -32,7 +29,7 @@ class DataPengajuan extends Component
 
     public function findId($id)
     {
-        dd($id);
+      
         $this->idModal = $id;
     }
 }

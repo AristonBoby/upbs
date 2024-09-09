@@ -55,7 +55,7 @@ class Pengajuan extends Component
         $this->varitas=[0];
         $this->i = 0 ;
         $this->fill([
-            'idvaritas'=>collect([['varitas'=>'','jumlah'=>'','lokasiTanam'=>'']])
+            'idvaritas'=>collect([['varitas'=>'','jumlah'=>'']])
         ]);
         $this->jenis    = tblVaritas::all();
     }
@@ -89,7 +89,6 @@ class Pengajuan extends Component
     {
         unset($this->varitas[$id]);
         unset($this->jumlah[$id]);
-        unset($this->harga[$id]);
         unset($this->idvaritas[$id]);
     }
 
@@ -110,9 +109,6 @@ class Pengajuan extends Component
 
     public function simpan()
     {   
-        $q = tblPengajuan::where('id','139107bd-2f2d-4d37-a3ad-d998de08cbd3')->first();
-        dd($q->relasiitemvaritas);
-
 
         $this->validate([
                 'idvaritas.*.jumlah'        =>  'required',
@@ -130,7 +126,7 @@ class Pengajuan extends Component
                 'user_id'               => Auth::User()->id,
                 'kelurahan_id'          => $this->varKelurahan,
                 'status'                => 1,
-                'jenispembayaran_id'    => 1,
+                'jenispembayaran_id'    => $this->varPembayaran,
                 'tglPengambilan'        => $this->varTglpengambilan,
             ]);
             if($query)
@@ -162,9 +158,26 @@ class Pengajuan extends Component
                 if($data)
                 {
                     $this->dispatch('alert',text:'Data Berhasil Disimpan !!!',icon:'success',title:'Berhasil',timer:2000);
+                    $this->resetform();
                 }
             }
     }
+
+    public function resetForm()
+    {
+        $this->varTglpengambilan = '';
+        $this->varKelurahan='';
+        $this->varKota = '';
+        $this->varProvinsi = '';
+        $this->varKecamatan='';
+        $this->varPembayaran='';
+        $this->varitas = [];
+        $this->fill([
+            'idvaritas'=>collect([['varitas'=>'','jumlah'=>'','lokasiTanam'=>'']])
+        ]);
+
+    }
+
     public function jenisVaritas($no)
     {
          $query = tblVaritas::where('id',$this->idvaritas[$no])->first();

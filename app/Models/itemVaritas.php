@@ -11,7 +11,9 @@ class itemVaritas extends Model
     protected $fillable = [
         'tbl_pengajuan_id',
         'tbl_varitas_id',
-        'jumlah'
+        'jumlah',
+        'total',
+        'status',
     ];
 
     public function relasitblvaritas ()

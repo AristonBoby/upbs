@@ -109,13 +109,8 @@ class Pengajuan extends Component
 
     public function simpan()
     {      
-        $q = itemVaritas::where('id',1)->get();
-       // dd($q);
-        foreach($q as $data)
-        {   
-            $this->totalBayar += $data->jumlah * $data->relasitblvaritas->harga;
-        }
-            dd($this->totalBayar);
+        
+        
         
         $this->validate([
                 'idvaritas.*.jumlah'        =>  'required',
@@ -143,15 +138,24 @@ class Pengajuan extends Component
                
                 foreach($this->idvaritas as $data)
                 {
+                    $querytotal =   tblVaritas::where('id',$data['varitas'])->first();
                     $query = itemVaritas::create([
                       
                         'tbl_pengajuan_id' => $id,
                         'tbl_varitas_id'   => $data['varitas'],
                         'jumlah'           => $data['jumlah'],
-                        
+                        'total'            => $data['jumlah'] * $querytotal->harga,
+                        'status'           => 'ok',
                     ]);
-                    
+
+                   
                 }
+                $q = itemVaritas::where('tbl_pengajuan_id',$id)->get();
+                foreach($q as $data)
+                {   
+                    $this->totalBayar += $data->jumlah * $data->relasitblvaritas->harga;
+                }
+                dd($this->totalBayar);
             }
     }
     public function jenisVaritas($no)

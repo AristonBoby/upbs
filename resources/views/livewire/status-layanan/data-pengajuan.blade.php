@@ -77,7 +77,7 @@
                                     <span class="badge float-end  text-bg-secondary">Secondary</span>
                                 </div>
                                 <div class="col-md-12 mb-3">
-                                    <h4 class="text-center mb-3">DETAIL TRANSAKSI </h4>
+                                    <h6 class="text-center mb-3"><u>DETAIL IDENTITAS</u> </h6>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group row">
@@ -113,13 +113,57 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <hr class="mt-1">
+                                <div class="col-md-12 mb-3">
+                                    <h6 class="text-center mb-1"><u>DETAIL PEMESANAN</u> </h6>
+                                </div>
+                                <div class="col-md-12 mt-3">
                                     <div class="row">
-                                        <table>
-                                            $data->
-                                        </table>
+                                       <div class="col-md-6 row">
+                                            <label class="fw-bold col-md-4">Tanggal Pengambilan </label>
+                                            <p class="col-sm-8 text-capitalize"> : {{  \Carbon\Carbon::parse($data->tglPengambilan)->format('d F Y')  }}</p>
+                                       </div>
+                                       <div class="col-md-6 row">
+                                            <label class="fw-bold col-md-4">Lokasi Penanaman </label>
+                                            <p class="col-sm-8 text-capitalize">    
+                                                Kelurahan/Desa {{$data->kelurahan->kelurahan}} 
+                                                Kecamatan {{ $data->kelurahan->kecamatan->kecamatan }} 
+                                                Kab/Kota {{ $data->kelurahan->kecamatan->kota->kota }} 
+                                                Provinsi {{ $data->kelurahan->kecamatan->kota->provinsi->provinsi}}
+                                            </p>
+                                       </div>
                                     </div>
                                 </div>
+                                <div class="col-md-12 mb-3">
+                                    <h6 class="text-center mb-1"><u>DETAIL PEMESANAN VARITAS</u> </h6>
+                                </div>
+                                <table class="table table-striped  table-bordered table-sm mt-3">
+                                    <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Jenis Varitas</th>
+                                            <th>Harga</th>
+                                            <th>Jumlah</th>
+                                            <th>Total</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ( $data->itemvaritas as $no=>$query)
+                                            <tr>
+                                                <td>{{ $no+1 }}</td>
+                                                <td>{{$query->relasitblvaritas->varitas}}</td>
+                                                <td>{{$query->relasitblvaritas->harga}}</td>
+                                                <td>{{$query->jumlah}}</td>
+                                                <td>{{$query->total}}</td>
+                                            </tr>    
+                                        @empty
+                                            <tr>
+                                                <td colspan="5" class="text-center">Varitas tidak ada ...</td>
+                                            </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
                             </div>
                             </div>
                         </div>

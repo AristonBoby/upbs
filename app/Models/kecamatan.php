@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class kecamatan extends Model
 {
     use HasFactory;
+
+    public function kota()
+    {
+        return $this->belongsTo(kota::class,'kota_id','id');
+    }
 }

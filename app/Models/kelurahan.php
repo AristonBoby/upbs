@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class kelurahan extends Model
 {
     use HasFactory;
+    
+    public function kecamatan()
+    {
+        return $this->belongsTo(kecamatan::class,'kecamatan_id','id');
+    }
 }

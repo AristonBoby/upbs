@@ -134,10 +134,11 @@
                                        </div>
                                     </div>
                                 </div>
+                                <hr class="mt-1">
                                 <div class="col-md-12 mb-3">
                                     <h6 class="text-center mb-1"><u>DETAIL PEMESANAN VARITAS</u> </h6>
                                 </div>
-                                <table class="table table-striped  table-bordered table-sm mt-3">
+                                <table class="table table-striped table-bordered table-sm mt-3">
                                     <thead>
                                         <tr>
                                             <th>No.</th>
@@ -168,9 +169,34 @@
                             </div>
                         </div>
                     <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-info btn-sm float-start text-white"><i class='fa fa-print'></i> Cetak</button>
+                    <button type="button" class="btn btn-success btn-sm float-start" data-bs-toggle="modal" data-bs-target="#konfirmasiModal"><i class='fa fa-check'></i> Konfirmasi</button>
+                    <button class="btn btn-danger btn-sm"> <i class="fa fa-times"></i> Tolak Permintaan</button>
+                    <button type="button" class="btn btn-danger btn-sm float-start"><i class='fa fa-trash'></i> Hapus Permintaan</button>
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"><i class='fa fa-times'></i> Tutup</button>
                     </div>
                 @endforeach
+            </div>
+        </div>
+      </div>
+
+
+      <div wire:ignore.self class="modal fade" id="konfirmasiModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="konfirmasiModal" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                </div>
+                <div class="modal-body">
+                   <span>
+                        Apakah Anda Ingin Menerima Permintaan Varitas Bibit?
+                   </span>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success btn-sm">Konfirmasi</button>
+                    <button class="btn btn-danger btn-sm" data-bs-dismiss="modal"><i class="fa fa-times"></i> Tidak</button>
+
+                </div>
             </div>
         </div>
       </div>

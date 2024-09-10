@@ -14,7 +14,7 @@ class DataPengajuan extends Component
 
     public function render()
     {   
-        $modal = tblPengajuan::where('id',$this->idModal)->first();
+        $modal = tblPengajuan::where('id',$this->idModal)->get();
         $data = tblPengajuan::where('status',1)->whereHas('user',function($query){
                 $query->where('name','LIKE','%'.$this->pencarian.'%')->orWhere('alamat','LIKE','%'.$this->pencarian.'%');
             })->paginate(10);

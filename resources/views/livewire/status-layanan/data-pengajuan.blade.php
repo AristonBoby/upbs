@@ -64,20 +64,68 @@
     </div>
     <div wire:ignore.self class="modal fade" id="modalDetailTransaksi" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalDetailTransaksi" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="staticBackdropLabel"><i class="fa fa-eye text-sm"></i> DETAIL</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-content">
+                @foreach ( $dataModal as $data)
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel"><i class="fa fa-eye text-sm"></i> Detai Transaksi</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                    <span class="badge float-end  text-bg-secondary">Secondary</span>
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <h4 class="text-center mb-3">DETAIL TRANSAKSI </h4>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <span class="fw-bold col-sm-4">Nama</span>
+                                        <div class="col-md-7 text-capitalize">
+                                            <span class="fw-bold">: {{ $data->user->name }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row fw-bolder">
+                                        <span class="fw-bold col-sm-4">Email</span>
+                                        <div class="col-md-7">
+                                            <span class="fw-bold">: {{ $data->user->email }}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row fw-bolder">
+                                        <span class="fw-bold col-sm-4">Pekerjaan</span>
+                                        <div class="col-md-7">
+                                            <span class="fw-bold">: {{ $data->user->pekerjaan }}</h5>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row fw-bolder">
+                                        <span class="fw-bold col-sm-4">No Tlpn / HP</span>
+                                        <div class="col-md-7">
+                                            <span>: {{ $data->user->noTlpn }}</h5>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row fw-bolder">
+                                        <span class="fw-bold col-sm-4">Alamat</span>
+                                        <div class="col-md-7">
+                                            <span>: {{ $data->user->alamat }}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Tutup</button>
+                    </div>
+                @endforeach
             </div>
-            <div class="modal-body">
-              <div class="container">
-               {{$dataModal}}
-              
-              </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Tutup</button>
-            </div>
-          </div>
         </div>
       </div>
 </div>

@@ -37,13 +37,16 @@
                                     <td>{{ $no+1 }}.</td>
                                     <td>{{ $data->user->name }}</td>   
                                     <td>{{ $data->tglPengambilan }}</td>
-                                    <td>{{ $data->harga }}</td>
+                                    <td> @rupiah($data->harga )</td>
                                     <td>{{ $data->jenispembayaran_id }}</td>
                                     <td>{{ $data->status }}</td>
                                     <td>{{ $data->created_at }}</td>
                                     <td>
-                                        <a href="javascript:void(0)" wire:click='findId("{{$data->id}}")' data-bs-toggle="modal" data-bs-target="#modalDetailTransaksi"> <i class=" fa fa-eye"></i></a>
-                                        <button class=" btn btn-sm bg-default text-secondary"><i class="fa fa-print"></i></button>
+                                        <a href="javascript:void(0)" wire:click='findId("{{$data->id}}")' data-bs-toggle="modal" data-bs-target="#modalDetailTransaksi"> <i class="fa-sm fa fa-eye"></i></a>
+                                        <button class=" btn btn-sm bg-default text-secondary"><i class="fa fa-print text-success"></i></button>
+                                        <button class=" btn btn-sm bg-default text-secondary" wire:click='findId("{{$data->id}}")' data-bs-toggle="modal" data-bs-target="#modalHapus"><i class="fa fa-trash fa-md text-danger"></i></button>
+                                        
+
                                     </td>
                                 </tr>
                             @empty
@@ -185,7 +188,7 @@
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
-
+                    <h5 class="modal-title" id="staticBackdropLabel"><i class="fa fa-question-circle text-sm"></i> Konfirmasi</h5>
                 </div>
                 <div class="modal-body">
                    <span>

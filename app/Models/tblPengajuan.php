@@ -8,9 +8,10 @@ use App\Models\itemVaritas;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class tblPengajuan extends Model
-{
+{   use SoftDeletes;
     use HasFactory;
     use HasUuids;
     protected  $table = 'tbl_pengajuans';

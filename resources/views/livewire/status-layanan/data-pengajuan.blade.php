@@ -36,17 +36,21 @@
                                 <tr>
                                     <td>{{ $no+1 }}.</td>
                                     <td>{{ $data->user->name }}</td>   
-                                    <td>{{ $data->tglPengambilan }}</td>
+                                    <td>{{  \Carbon\Carbon::parse($data->tglPengambilan)->format('d F Y')  }}</td>
                                     <td> @rupiah($data->harga )</td>
+                                    <td>
+                                        @if ($data->status === '1')
+                                            <span class="badge badge-primary bg-warning">Menunggu Konfirmasi</span>
+                                        @elseif ($data->status === '0')
+                                            <span class="badge badge-primary bg-success">Disetujui</span>
+                                        @elseif ($data->status === '2')
+                                            <span class="badge badge-primary bg-danger">Ditolak</span>
+                                        @endif
+                                    </td>
                                     <td>{{ $data->jenispembayaran_id }}</td>
-                                    <td>{{ $data->status }}</td>
-                                    <td>{{ $data->created_at }}</td>
+                                    <td>{{  \Carbon\Carbon::parse($data->created_at)->format('d F Y H:m:i')  }}</td>
                                     <td>
                                         <a href="javascript:void(0)" wire:click='findId("{{$data->id}}")' data-bs-toggle="modal" data-bs-target="#modalDetailTransaksi"> <i class="fa-sm fa fa-eye"></i></a>
-                                        <button class=" btn btn-sm bg-default text-secondary"><i class="fa fa-print text-success"></i></button>
-                                        <button class=" btn btn-sm bg-default text-secondary" wire:click='findId("{{$data->id}}")' data-bs-toggle="modal" data-bs-target="#modalHapus"><i class="fa fa-trash fa-md text-danger"></i></button>
-                                        
-
                                     </td>
                                 </tr>
                             @empty
@@ -77,7 +81,13 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-12 ">
-                                    <span class="badge float-end  text-bg-secondary">Secondary</span>
+                                    @if($data->status === '1')
+                                        <b class="badge float-end  text-bg-warning">Menunggu Konfirmasi</b>
+                                    @elseif($data->status === '0')
+                                        <b class="badge float-end  text-bg-success">Disetujui</b>
+                                    @elseif($data->status === '2')
+                                        <b class="badge float-end  text-bg-danger">Ditolak</b>
+                                    @endif
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <h6 class="text-center mb-3"><u>DETAIL IDENTITAS</u> </h6>
@@ -157,9 +167,9 @@
                                             <tr>
                                                 <td>{{ $no+1 }}</td>
                                                 <td>{{$query->relasitblvaritas->varitas}}</td>
-                                                <td>{{$query->relasitblvaritas->harga}}</td>
+                                                <td>@rupiah($query->relasitblvaritas->harga)</td>
                                                 <td>{{$query->jumlah}}</td>
-                                                <td>{{$query->total}}</td>
+                                                <td><b>@rupiah($query->total)</b></td>
                                             </tr>    
                                         @empty
                                             <tr>
@@ -169,14 +179,22 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <h5 class="float-end">Total Harga : @rupiah($data->harga)</h5>
                             </div>
                         </div>
                     <div class="modal-footer">
-                    <button type="button" class="btn btn-info btn-sm float-start text-white"><i class='fa fa-print'></i> Cetak</button>
-                    <button type="button" class="btn btn-success btn-sm float-start" data-bs-toggle="modal" data-bs-target="#konfirmasiModal"><i class='fa fa-check'></i> Konfirmasi</button>
-                    <button class="btn btn-danger btn-sm"> <i class="fa fa-times"></i> Tolak Permintaan</button>
-                    <button type="button" class="btn btn-danger btn-sm float-start"><i class='fa fa-trash'></i> Hapus Permintaan</button>
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"><i class='fa fa-times'></i> Tutup</button>
+                        @if($data->status === '0')
+                            <button type="button" class="btn btn-info btn-sm float-start text-white"><i class='fa fa-print'></i> Cetak</button>
+                        @endif
+                        @if($data->status === '1')
+                            <button type="button" class="btn btn-success btn-sm float-start" data-bs-toggle="modal" data-bs-target="#konfirmasiModal"><i class='fa fa-check'></i> Konfirmasi</button>
+                        @elseif($data->status === '0')
+                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#btlkonfirmasiModal"> <i class="fa fa-times" ></i> Batalkan Permintaan</button>
+                        @endif
+                        @if($data->status ==='1')
+                            <button type="button" class="btn btn-danger btn-sm float-start" data-bs-toggle="modal" data-bs-target="#hapusModal" wire:click='findId({{ $data->id }})'><i class='fa fa-trash'></i> Hapus Permintaan</button>
+                        @endif
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"><i class='fa fa-times'></i> Tutup</button>
                     </div>
                 @endforeach
             </div>
@@ -196,11 +214,51 @@
                    </span>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-success btn-sm">Konfirmasi</button>
+                    <button class="btn btn-success btn-sm " wire:click='konfirmasiPengajuan'>Konfirmasi</button>
                     <button class="btn btn-danger btn-sm" data-bs-dismiss="modal"><i class="fa fa-times"></i> Tidak</button>
 
                 </div>
             </div>
         </div>
       </div>
+
+      <div wire:ignore.self class="modal fade" id="hapusModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="hapusModal" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel"><i class="fa fa-question-circle text-sm"></i> Konfirmasi</h5>
+                </div>
+                <div class="modal-body">
+                   <span>
+                      Apakah Anda Ingin Menghapus Permintaan ini ?
+                   </span>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger btn-sm" data-bs-dismiss="modal" wire:click='hapus'><i class="fa fa-trash" > </i> Hapus</button>
+                    <button class="btn btn-secondary btn-sm" data-bs-dismiss="modal" ><i class="fa fa-times"></i> Batal</button>
+
+                </div>
+            </div>
+            </div>
+      </div>
+
+        <div wire:ignore.self class="modal fade" id="btlkonfirmasiModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="btlkonfirmasiModal" aria-hidden="true">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel"><i class="fa fa-question-circle text-sm"></i> Konfirmasi</h5>
+                    </div>
+                    <div class="modal-body">
+                    <span>
+                        Apakah Anda Ingin Membatalkan Permintaan ini ?
+                    </span>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger btn-sm" data-bs-dismiss="modal" wire:click='btlKonfirmasi' ><i class="fa fa-trash"> </i> Batalkan Konfirmasi</button>
+                        <button class="btn btn-secondary btn-sm" data-bs-dismiss="modal" ><i class="fa fa-times"></i> Batal</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
 </div>

@@ -42,8 +42,8 @@ class DataPengajuan extends Component
     }
 
     public function konfirmasiPengajuan()
-    {
-
+    {   
+        $this->cekHarga();
         $query = tblPengajuan::where('id',$this->idModal)->first();
         $query->update([
             'status'=>'0',
@@ -51,6 +51,7 @@ class DataPengajuan extends Component
 
         if($query)
         {
+            
             $this->dispatch('alert',text:'Data Telah Terkonfirmasi  !!!',icon:'success',title:'Berhasil',timer:2000);
         }
         // $query = tblPengajuan::where('id',$this->idModal)->first();
@@ -69,6 +70,30 @@ class DataPengajuan extends Component
         $query->update([
             'status'=>'1',
         ]);
+        if($query)
+        {
+            $this->dispatch('alert',text:'Konfirmasi Telah dibatalkan  !!!',icon:'success',title:'Berhasil',timer:2000);
+        }
+    }
+
+
+    public function cekHarga()
+    {
+        $totalItem = 0;
+        $query = tblPengajuan::where('id',$this->idModal)->first();
+        $total = $query->harga; 
+        foreach($query->itemvaritas as $data)
+        {
+            $totalItem += $data->total;
+        }
+
+
+        if(($query->whereNull('harga')) || $query->harga === 0 )
+        {
+            $query->update([
+                'harga' => $totalItem,
+            ]);
+        }
     }
 
     

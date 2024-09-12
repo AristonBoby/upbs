@@ -195,6 +195,7 @@
                             <button type="button" class="btn btn-danger btn-sm float-start" data-bs-toggle="modal" data-bs-target="#hapusModal" wire:click='findId({{ $data->id }})'><i class='fa fa-trash'></i> Hapus Permintaan</button>
                         @endif
                         <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"><i class='fa fa-times'></i> Tutup</button>
+                        <button type="button" class="btn btn-info btn-sm" wire:click='cekHarga'><i class='fa fa-times'></i> Hitung Ulang</button>
                     </div>
                 @endforeach
             </div>
@@ -254,7 +255,7 @@
                     </span>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-danger btn-sm" data-bs-dismiss="modal" wire:click='btlKonfirmasi' ><i class="fa fa-trash"> </i> Batalkan Konfirmasi</button>
+                        <button class="btn btn-danger btn-sm" wire:click='btlKonfirmasi' ><i class="fa fa-trash"> </i> Batalkan Konfirmasi</button>
                         <button class="btn btn-secondary btn-sm" data-bs-dismiss="modal" ><i class="fa fa-times"></i> Batal</button>
 
                     </div>
@@ -262,3 +263,14 @@
             </div>
         </div>
 </div>
+
+<script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        window.addEventListener('alert', event => {
+            $("#konfirmasiModal").modal("hide");
+            $("#btlkonfirmasiModal").modal("hide");
+
+        });
+    });
+</script>

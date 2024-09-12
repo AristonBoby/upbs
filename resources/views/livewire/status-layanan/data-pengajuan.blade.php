@@ -5,6 +5,11 @@
                 <div class="card-header">
                     <span class="card-title">Status Pengajuan</span>
                 </div>
+
+<div class="overlay dark">
+    <i class="fas fa-2x fa-sync-alt"></i>
+    </div>
+
                 <div class="card-body">
                    <table class="table table-sm text-center table-striped table-hover">
                         <thead>
@@ -20,52 +25,48 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <div class="row mb-3">
-                                <div class="col-md-6 offset-md-6 row">
-                                    <div class="input-group col-md-3 mb-3">
-                                        <input wire:model.live='pencarian' type="text" class="form-control rounded-0" placeholder="Pencarian Data ..." aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-outline-secondary rounded-0" type="button">Pencarian</button>
-                                            <a class="btn btn-outline-danger rounded-0" href='/statusLayanan' type="button">Reset</a>
+                                <div class="row mb-3">
+                                    <div class="col-md-6 offset-md-6 row">
+                                        <div class="input-group col-md-3 mb-3">
+                                            <input wire:model.live='pencarian' type="text" class="form-control rounded-0" placeholder="Pencarian Data ..." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-secondary rounded-0" type="button">Pencarian</button>
+                                                <a class="btn btn-outline-danger rounded-0" href='/statusLayanan' type="button">Reset</a>
 
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            @forelse ( $datapengajuan as $no=>$data)
-                                <tr>
-                                    <td>{{ $no+1 }}.</td>
-                                    <td>{{ $data->user->name }}</td>   
-                                    <td>{{  \Carbon\Carbon::parse($data->tglPengambilan)->format('d F Y')  }}</td>
-                                    <td> @rupiah($data->harga )</td>
-                                    <td>
-                                        @if ($data->status === '1')
-                                            <span class="badge badge-primary bg-warning">Menunggu Konfirmasi</span>
-                                        @elseif ($data->status === '0')
-                                            <span class="badge badge-primary bg-success">Disetujui</span>
-                                        @elseif ($data->status === '2')
-                                            <span class="badge badge-primary bg-danger">Ditolak</span>
-                                        @endif
-                                    </td>
-                                    <td>{{ $data->jenispembayaran_id }}</td>
-                                    <td>{{  \Carbon\Carbon::parse($data->created_at)->format('d F Y H:m:i')  }}</td>
-                                    <td>
-                                        <a href="javascript:void(0)" wire:click='findId("{{$data->id}}")' data-bs-toggle="modal" data-bs-target="#modalDetailTransaksi"> <i class="fa-sm fa fa-eye"></i></a>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td>Data Tidak ditemuka</td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                        
+                                @forelse ( $datapengajuan as $no=>$data)
+                                    <tr>
+                                        <td>{{ $no+1 }}.</td>
+                                        <td>{{ $data->user->name }}</td>   
+                                        <td>{{  \Carbon\Carbon::parse($data->tglPengambilan)->format('d F Y')  }}</td>
+                                        <td> @rupiah($data->harga )</td>
+                                        <td>
+                                            @if ($data->status === '1')
+                                                <span class="badge badge-primary bg-warning">Menunggu Konfirmasi</span>
+                                            @elseif ($data->status === '0')
+                                                <span class="badge badge-primary bg-success">Disetujui</span>
+                                            @elseif ($data->status === '2')
+                                                <span class="badge badge-primary bg-danger">Ditolak</span>
+                                            @endif
+                                        </td>
+                                        <td>{{ $data->jenispembayaran_id }}</td>
+                                        <td>{{  \Carbon\Carbon::parse($data->created_at)->format('d F Y H:m:i')  }}</td>
+                                        <td>
+                                            <a href="javascript:void(0)" wire:click='findId("{{$data->id}}")' data-bs-toggle="modal" data-bs-target="#modalDetailTransaksi"> <i class="fa-sm fa fa-eye"></i></a>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td>Data Tidak ditemuka</td>
+                                    </tr>
+                                @endforelse
+                        </tbody>                        
                    </table>
                    {{ $datapengajuan->links() }}
                 </div>
-                <tfoot>
-
-                </tfoot>
             </div>
         </div>
     </div>

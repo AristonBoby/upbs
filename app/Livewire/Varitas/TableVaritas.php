@@ -39,7 +39,7 @@ class TableVaritas extends Component
     }
 
     public function editModal($id)
-    {
+    { 
         $this->varitasKategori  = tblVaritas::where('id',$id)->first();
         $this->id               = $this->varitasKategori->id;
         $this->kategori         = $this->varitasKategori->tblkat_varitas_id;

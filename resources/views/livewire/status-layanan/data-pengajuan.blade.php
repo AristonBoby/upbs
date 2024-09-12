@@ -5,11 +5,6 @@
                 <div class="card-header">
                     <span class="card-title">Status Pengajuan</span>
                 </div>
-
-<div class="overlay dark">
-    <i class="fas fa-2x fa-sync-alt"></i>
-    </div>
-
                 <div class="card-body">
                    <table class="table table-sm text-center table-striped table-hover">
                         <thead>
@@ -39,7 +34,7 @@
                                 </div>
                                 @forelse ( $datapengajuan as $no=>$data)
                                     <tr>
-                                        <td>{{ $no+1 }}.</td>
+                                        <td>{{ $datapengajuan->firstItem() + $no }}.</td>
                                         <td>{{ $data->user->name }}</td>   
                                         <td>{{  \Carbon\Carbon::parse($data->tglPengambilan)->format('d F Y')  }}</td>
                                         <td> @rupiah($data->harga )</td>
@@ -196,7 +191,6 @@
                             <button type="button" class="btn btn-danger btn-sm float-start" data-bs-toggle="modal" data-bs-target="#hapusModal" wire:click='findId({{ $data->id }})'><i class='fa fa-trash'></i> Hapus Permintaan</button>
                         @endif
                         <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"><i class='fa fa-times'></i> Tutup</button>
-                        <button type="button" class="btn btn-info btn-sm" wire:click='cekHarga'><i class='fa fa-times'></i> Hitung Ulang</button>
                     </div>
                 @endforeach
             </div>

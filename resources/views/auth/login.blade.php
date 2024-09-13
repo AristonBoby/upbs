@@ -2,14 +2,15 @@
 
 @section('content')
 <div class="container">
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+        <h5 class="display-6 fw-normal text-body-emphasis">LOGIN</h5>
+    </div>
     <div class="row justify-content-center">
         <div class="modal-dialog" role="document">
             <div class="modal-content rounded-4 shadow">
             <div class="modal-header p-5 pb-4 border-bottom-0">
                 <h1 class="fw-bold mb-0 fs-2 text-justify-center">Login</h1>
-
             </div>
-
             <div class="modal-body p-5 pt-0">
                 <form method="POST" action="{{ route('login') }}">
                     @csrf

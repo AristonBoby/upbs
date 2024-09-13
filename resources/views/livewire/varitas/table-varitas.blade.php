@@ -1,6 +1,6 @@
 
 <div class="col-md-8">
-    <div class="card">
+    <div class="card shadow-lg">
         <div class="card-header bg-primary ">
             <b class="text-white"><i class="fa fa-table"></i> Tabel Varitas</b>
         </div>

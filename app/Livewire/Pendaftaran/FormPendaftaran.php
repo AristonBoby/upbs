@@ -58,6 +58,8 @@ class FormPendaftaran extends Component
                 'email'     =>  $this->varEmail,
                 'alamat'    =>  $this->varAlamat,
                 'password'  =>  Hash::make($this->varrePassword),
+                'noTlpn'    =>  $this->varHp,
+                'pekerjaan' =>  $this->varPekerjaan,
                 'status'    =>  1,
                 'role_id'   =>  $role->idRole,
             ]);

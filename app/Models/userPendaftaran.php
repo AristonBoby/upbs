@@ -18,7 +18,9 @@ class userPendaftaran extends Authenticatable
         'email',
         'password',
         'alamat',
+        'pekerjaan',
         'status',
+        'noTlpn',
         'role_id',
     ];
 

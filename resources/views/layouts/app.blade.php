@@ -19,45 +19,7 @@
 <body class="d-flex h-100">
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column " id="app">
         <header>
-            <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
-                <div class="container-fluid">
-                    <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-                        <img src="/logo.webp" width="32" height="32 class="me-2" viewBox="0 0 118 94" role="img"><title> BSIP</title></svg> <b class="text-xs"> &nbsp BSIP Kalimantan Timur </b>
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li><a href="{{ route('welcome') }}" class="nav-link px-2 link-secondary hover">Home</a></li>
-                            <li><a href="{{ route('layanan') }}" class="nav-link px-2 link-dark hover">Jenis Layanan</a></li>
-                            <li><a href="{{ route('pendaftaran') }}" class="nav-link px-2 link-dark">Pendaftaran</a></li>
-                            <li><a href="{{ route('pengajuanBenih') }}" class="nav-link px-2 link-dark">Pengajuan Benih</a></li>
-                            <li><a href="{{ route('statusLayanan') }}" class="nav-link px-2 link-dark">Status Layanan</a></li>
-                            <li><a href="{{ route('profil') }}" class="nav-link px-2 link-dark">Profil</a></li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Master Data
-                                </a>
-                                    <ul class="dropdown-menu">
-                                        <li><p class="dropdown-item">Data Master Varitas</p></li>
-                                        <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item" href="{{ route('varitas') }}">Varitas</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('varitasHapus') }}">Varitas dihapus</a></li>
-                                        <li><hr class="dropdown-divider"></li>
-                                        <li><p class="dropdown-item">Data Master Kategori Varitas</p></li>
-                                        <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item hover" href="{{ route('katVaritas') }}">Kategori Varitas</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('katvaritasHapus') }}">Kategori Varitas dihapus</a></li>
-                                    </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <form class="d-flex">
-                        <a href="{{ route('login') }}" class="btn btn-outline-success btn-md float-end" type="submit">Login</a>
-                    </form>
-                </div>
-            </nav>
+            @include('livewire.app.nav')
         </header>
         <main class="flex-shrink-0">
             <div class="content-wrapper"width="100%" >

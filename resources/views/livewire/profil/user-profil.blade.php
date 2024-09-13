@@ -1,4 +1,4 @@
-<div class="row justify-content-center mb-3">
+<div class="row justify-content-center mb-0">
     <div class="col-md-5" role="document">
         <div class="rounded-4 shadow">
             <div class="card">

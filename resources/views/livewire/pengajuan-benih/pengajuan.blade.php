@@ -1,7 +1,7 @@
-    <div class='col-md-12'>
-        <div class="row justify-content-center">
+    <div class='col-md-12 '>
+        <div class="row justify-content-center ">
             <div class="col-md-12" role="document">
-                <div class=" rounded-4 shadow">
+                <div class=" mb-3 rounded-4 shadow">
                     <form action="#" wire:submit='simpan'>
                         <div class="p-5">
                             <div class="row">

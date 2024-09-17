@@ -1,4 +1,4 @@
-<nav class="main-header navbar navbar-expand-md navbar-light navbar-white bg-light shadow">
+<nav class="main-header navbar navbar-expand-md navbar-light navbar-white bg-light ">
     <div class="container">
         <a href="/" class="d-flex align-items-center col-md-2 mb-2 mb-md-0 text-dark text-decoration-none flex-row">
             <img src="/logo.webp" width="32" height="32 class="me-2" viewBox="0 0 118 94" role="img"><title> BSIP</title></svg> <b class="text-xs"> &nbsp BSIP Kalimantan Timur </b>
@@ -48,8 +48,8 @@
         </div>
     </div>
 </nav>
-<div aria-label="breadcrumb  ">
-    <ol class="breadcrumb bg-">
-        <li class="breadcrumb-item active text-primary" aria-current="page">Home</li>
+<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+    <ol class="breadcrumb float-end">
+     @yield('nav')
     </ol>
-</di>
+</nav>

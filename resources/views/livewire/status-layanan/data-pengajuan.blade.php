@@ -1,12 +1,13 @@
 <div class="container" style="width:100%">
+    <div class="col-md-12 shadow p-3 mb-3 rounded-4">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
+        <div class="col-md-11 m-5">
+            <div class="card shadow">
                 <div class="card-header">
                     <span class="card-title">Status Pengajuan</span>
                 </div>
                 <div class="card-body">
-                   <table class="table table-sm text-center table-striped table-hover">
+                   <table class="table table-sm table-bordered text-center table-striped table-hover">
                         <thead>
                             <tr>
                                 <td class="text-center">No</td>
@@ -21,9 +22,9 @@
                         </thead>
                         <tbody>
                                 <div class="row mb-3">
-                                    <div class="col-md-6 offset-md-6 row">
+                                    <div class="col-md-4 offset-md-8 row">
                                         <div class="input-group col-md-3 mb-3">
-                                            <input wire:model.live='pencarian' type="text" class="form-control rounded-0" placeholder="Pencarian Data ..." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                            <input wire:model.live='pencarian' type="text" class="form-control " placeholder="Pencarian Data ..." aria-label="Recipient's username" aria-describedby="basic-addon2">
                                             <div class="input-group-append">
                                                 <button class="btn btn-outline-secondary rounded-0" type="button">Pencarian</button>
                                                 <a class="btn btn-outline-danger rounded-0" href='/statusLayanan' type="button">Reset</a>
@@ -64,6 +65,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <div wire:ignore.self class="modal fade" id="modalDetailTransaksi" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalDetailTransaksi" aria-hidden="true">
         <div class="modal-dialog modal-lg">

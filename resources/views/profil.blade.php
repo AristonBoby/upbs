@@ -8,3 +8,7 @@
         <livewire:profil.user-profil>
     </main>
 @endsection
+@section('nav')
+<li class="breadcrumb-item"><a href="#">Login</a></li>
+<li class="breadcrumb-item active" aria-current="page">Profil</li>
+@endsection

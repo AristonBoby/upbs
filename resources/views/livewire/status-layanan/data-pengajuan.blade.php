@@ -49,7 +49,7 @@
                                             @endif
                                         </td>
                                         <td>{{ $data->jenispembayaran_id }}</td>
-                                        <td>{{  \Carbon\Carbon::parse($data->created_at)->format('d F Y H:m:i')  }}</td>
+                                        <td>{{  \Carbon\Carbon::parse($data->created_at)->format('d F Y H:i:s')  }}</td>
                                         <td>
                                             <a href="javascript:void(0)" wire:click='findId("{{$data->id}}")' data-bs-toggle="modal" data-bs-target="#modalDetailTransaksi"> <i class="fa-sm fa fa-eye"></i></a>
                                         </td>

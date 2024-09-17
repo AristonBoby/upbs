@@ -1,9 +1,10 @@
-<div class="row justify-content-center mb-0">
-    <div class="col-md-5" role="document">
-        <div class="rounded-4 shadow">
+<div class="row justify-content-center">
+    <span class="fs-4 fw-bold m-3 text-center"><i class="fa fa-edit"> </i> UPDATE PROFIL</span>
+    <div class="col-md-12" role="document">
+        <div class="rounded-5 shadow">
             <div class="card">
-                <div class="card-header bg-primary">
-                    <span class="card-title text-white"><b><i class="fa fa-edit"></i> PROFIL USER</b></span>
+                <div class="card-header bg-default">
+                    <span class="card-title">Form Profil</span>
                 </div>
                 <form wire:submit='update'>
                     <div class="card-body">

@@ -1,4 +1,4 @@
-<div class="col-md-12">
+
     <div class="card">
         <div class="card-header bg-primary ">
             <b class="text-white"><i class="fa fa-table"></i> Tabel Varitas</b>
@@ -57,7 +57,7 @@
 
         </div>
     </div>
-</div>
+
 
 <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
 <script type="text/javascript">

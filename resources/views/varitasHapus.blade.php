@@ -1,18 +1,19 @@
 @extends('layouts.app')
 @section('content')
-
     <div class="container">
-        <div id="kt_app_toolbar" class="app-toolbar  py-3 py-lg-6 row">
-            <h4 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0"> RIWAYAT DATA VARITAS DIHAPUS</h4>
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="/">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">DATA VARITAS</li>
-                </ol>
-            </nav>
+        <div class="row m-1">
+            <span class="col-md-4 fw-bold fs-5"> <i class="fa fa-trash-o" aria-hidden="true"></i> RIWAYAT DATA VARITAS</span>
+            <div class="col-md-8">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb float-end">
+                        <li class="breadcrumb-item "><a href="/" class="text-muted">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Riwayat Data Varitas</li>
+                    </ol>
+                </nav>
+            </div>
         </div>
 
-        <div class="row">
+        <div class="col-md-12 shadow p-5 mt-5 mb-4 rounded-5">
             <livewire:varitas.hapus.varitas-hapus>
         </div>
     </div>

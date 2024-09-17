@@ -1,5 +1,5 @@
-<div class="col-md-4">
-    <div class="card shadow-lg">
+<div class="col-md-4 p-3">
+    <div class="card shadow">
         <div class="card-header bg-primary">
             <b class="text-white"><i class="fa fa-edit"></i> Form Varitas</b>
         </div>

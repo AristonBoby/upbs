@@ -1,10 +1,11 @@
 <div class="container" style="width:100%">
-    <div class="col-md-12 shadow p-3 mb-3 rounded-4">
+    <div class="col-md-12 shadow p-3 mb-5 rounded-4">
+        <span class="fw-bold fs-5 p-3"> <i class="fa fa-table"></i> Status Pengajuan</span>
     <div class="row justify-content-center">
         <div class="col-md-11 m-5">
             <div class="card shadow">
                 <div class="card-header">
-                    <span class="card-title">Status Pengajuan</span>
+                    <span class="card-title">Table Pengajuan</span>
                 </div>
                 <div class="card-body">
                    <table class="table table-sm table-bordered text-center table-striped table-hover">

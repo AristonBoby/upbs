@@ -1,4 +1,4 @@
-    <div class='col-md-12 '>
+    <div class='col-md-12 mt-3 mb-3'>
         <div class="row justify-content-center ">
             <div class="col-md-12" role="document">
                 <div class=" mb-3 rounded-5 shadow">

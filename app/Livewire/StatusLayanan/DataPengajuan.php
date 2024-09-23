@@ -5,6 +5,8 @@ namespace App\Livewire\StatusLayanan;
 use App\Models\tblPengajuan;
 use Livewire\Component;
 use Livewire\WithPagination;
+//use Barryvdh\DomPDF\PDF;
+use PDF;
 
 class DataPengajuan extends Component
 {   protected $paginationTheme = 'bootstrap';
@@ -94,6 +96,23 @@ class DataPengajuan extends Component
                 'harga' => $totalItem,
             ]);
         }
+    }
+    public function print()
+    {
+        $id ='fffff';
+        $payment = [
+            'id' => $id,
+            'name' => 'Ajith',
+            'amount' => 5000,
+            'date' => date('Y-m-d'),
+            'description' => 'Payment for services rendered'
+        ];
+        // Generate PDF
+        $pdf = PDF::loadView('pdf_view', ['payment'=>$payment])->setPaper(array(0,0,609.4488,935.433), 'portrait');
+        // Download PDF
+        return response()->streamDownload(function () use ($pdf) {
+            echo $pdf->stream();
+            }, 'name.pdf');
     }
 
     

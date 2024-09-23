@@ -16,7 +16,7 @@
                                 <td>Tanggal Pengambilan</td>
                                 <td>Harga</td>
                                 <td class="text-center">Status</td>
-                                <td>Keterangan</td>
+                                <td>Jenis</td>
                                 <td>Tanggal Pendaftaran</td>
                                 <td>*</td>
                             </tr>
@@ -49,7 +49,10 @@
                                                 <span class="badge badge-primary bg-danger">Ditolak</span>
                                             @endif
                                         </td>
-                                        <td>{{ $data->jenispembayaran_id }}</td>
+                                        <td>@if($data->jenispembayaran_id)
+                                            <b class="badge badge-primary bg-info">DESIMENISASI</b>
+                                            @endif
+                                        </td>
                                         <td>{{  \Carbon\Carbon::parse($data->created_at)->format('d F Y H:i:s')  }}</td>
                                         <td>
                                             <a href="javascript:void(0)" wire:click='findId("{{$data->id}}")' data-bs-toggle="modal" data-bs-target="#modalDetailTransaksi"> <i class="fa-sm fa fa-eye"></i></a>
@@ -183,7 +186,7 @@
                         </div>
                     <div class="modal-footer">
                         @if($data->status === '0')
-                            <button type="button" class="btn btn-info btn-sm float-start text-white"><i class='fa fa-print'></i> Cetak</button>
+                            <a target="_blank" class="btn btn-info btn-sm float-start text-white" wire:click='print'><i class='fa fa-print'></i> Cetak</a>
                         @endif
                         @if($data->status === '1')
                             <button type="button" class="btn btn-success btn-sm float-start" data-bs-toggle="modal" data-bs-target="#konfirmasiModal"><i class='fa fa-check'></i> Konfirmasi</button>

@@ -195,7 +195,5 @@ class Pengajuan extends Component
         $query = tblVaritas::find($this->modalVaritas)->first();
         $this->harga[$this->i]      = $query->harga;
         $this->total[$this->i]      = $query->harga * $this->modalJumlah;
-
-
     }
 }

@@ -30,9 +30,12 @@
             padding: 2px;
             text-align: left;
         }
+        p {
+            text-transform: capitalize;
+        }
     </style>
 </head>
-<body>
+<body >
     <div class="container">
         <div class="header">
             <h4 style="text-align: center;">Formulir Permohonan Benih</h4>
@@ -46,7 +49,7 @@
                 <tr>
                     <td width="100">Nama</td>
                     <td width="10">:</td>
-                    <td width="300">{{ $payment->user->name }}</td>
+                    <td width="300"><span>{{ $payment->user->name }}</span></td>
                 </tr>
                 <tr>
                     <td>Alamat</td>
@@ -64,9 +67,9 @@
                     <td width="300">{{ $payment->user->pekerjaan }}</td>
                 </tr>
             </table>
-            <p> Kami bermohon Untuk<br>
+            <p text-transform: uppercase;> Kami bermohon Untuk<br>
                 @if($payment->jenispembayaran_id == 1)
-                Bahan Deseminasi
+                <b>Bahan Deseminasi</b>
                 @endif
                
             </p>  
@@ -96,15 +99,15 @@
                     @endforeach
                 </tbody>
             </table>
-            <p>Rencana Pengambilan : Hari...... Tanggal ...... <br> Bibit/Benih tersebut akan kami tanam dilahan yang berlokasi di :</p>
-            <table>
-                <tr>
+            <p>Rencana Pengambilan : Hari {{ $tgl }} Tanggal {{ $tanggal }} <br> Bibit/Benih tersebut akan kami tanam dilahan yang berlokasi di :</p>
+            <table style="font-size: 11pt;">
+                <tr >
                     <td>Desa</td>
                     <td>:</td>
                     <td>{{ $payment->kelurahan->kelurahan }}</td>
                 </tr>
                 <tr>
-                    <td style="text-transform: capitalize">Kecamatan</td>
+                    <td>Kecamatan</td>
                     <td>:</td>
                     <td>{{ $payment->kelurahan->kecamatan->kecamatan }}</td>
                 </tr>
@@ -120,13 +123,13 @@
                 </tr>
             </table>
             <p>Demikian permohonan ini kami sampaikan, atas perhatiannya kami ucapkan termikasih.</p>
-            <table style="margin-left:500px;">
+            <table style="float: right; margin-right:80px;">
                 <tr>
-                    <td style="height: 120px;">Pemohon</td>
+                    <td style="height: 120px;   text-align: center;">Pemohon</td>
                 </tr>
                
                 <tr>
-                    <td style="height: 100px;">..................</td>
+                    <td style="height: 100px; text-align: center;">{{ $payment->user->name }}</td>
                 </tr>
             </table>
         </div>

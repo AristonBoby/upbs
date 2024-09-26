@@ -165,7 +165,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ( $data->itemvaritas as $no=>$query)
+                                        @forelse ( $data->itemvaritas as $query)
                                             <tr>
                                                 <td>{{ $no+1 }}</td>
                                                 <td>{{$query->relasitblvaritas->varitas}}</td>
@@ -186,7 +186,7 @@
                         </div>
                     <div class="modal-footer">
                         @if($data->status === '0')
-                            <a target="_blank" class="btn btn-info btn-sm float-start text-white" wire:click='print'><i class='fa fa-print'></i> Cetak</a>
+                            <a target="_blank" href="print/{{ $this->idModal }}" class="btn btn-info btn-sm float-start text-white"><i class='fa fa-print'></i> Cetak</a>
                         @endif
                         @if($data->status === '1')
                             <button type="button" class="btn btn-success btn-sm float-start" data-bs-toggle="modal" data-bs-target="#konfirmasiModal"><i class='fa fa-check'></i> Konfirmasi</button>

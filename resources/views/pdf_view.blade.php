@@ -21,8 +21,13 @@
             border-collapse: collapse;
         }
         .details th, .details td {
-            border: 1px solid #000;
-            padding: 10px;
+    
+            padding: 2px;
+            text-align: left;
+        }
+        .detail th, .detail td {
+            border-style:solid;
+            padding: 2px;
             text-align: left;
         }
     </style>
@@ -39,25 +44,91 @@
             </p>
             <table class="details">
                 <tr>
-                    <th>Name</th>
-                    <td>{{ $payment['name'] }}</td>
+                    <td width="100">Nama</td>
+                    <td width="10">:</td>
+                    <td width="300">{{ $payment->user->name }}</td>
                 </tr>
                 <tr>
-                    <th>Amount</th>
-                    <td>{{ $payment['amount'] }}</td>
+                    <td>Alamat</td>
+                    <td>:</td>
+                    <td width="300">{{ $payment->user->alamat }}</td>
                 </tr>
                 <tr>
-                    <th>Date</th>
-                    <td>{{ $payment['date'] }}</td>
+                    <td>No. HP / Tlpn</td>
+                    <td>:</td>
+                    <td width="300">{{ $payment->user->noTlpn }}</td>
                 </tr>
                 <tr>
-                    <th>Description</th>
-                    <td>{{ $payment['description'] }}</td>
+                    <td>Pekerjaan</td>
+                    <td>:</td>
+                    <td width="300">{{ $payment->user->pekerjaan }}</td>
                 </tr>
             </table>
-        </div>
-        <div class="footer">
-            <p>Thank you for your payment!</p>
+            <p> Kami bermohon Untuk<br>
+                @if($payment->jenispembayaran_id == 1)
+                Bahan Deseminasi
+                @endif
+               
+            </p>  
+
+            <table class="details detail">
+                <thead>
+                    <tr class="text-center">
+                        <th width="20">No.</th>
+                        <th>Nama Varitas</th>
+                        <th width="50">Jumlah</th>
+                        <th>Harga Satuan</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($payment->itemvaritas as $no=>$data)
+                        
+                    
+                    <tr>
+                        <td>{{ $no+1 }}.</td>
+                        <td>{{ $data->relasitblvaritas->varitas }}</td>
+                        <td>{{ $data->jumlah }}</td>
+                        <td>@rupiah($data->relasitblvaritas->harga)</td>
+                        <td>@rupiah($data->total)</td>
+
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            <p>Rencana Pengambilan : Hari...... Tanggal ...... <br> Bibit/Benih tersebut akan kami tanam dilahan yang berlokasi di :</p>
+            <table>
+                <tr>
+                    <td>Desa</td>
+                    <td>:</td>
+                    <td>{{ $payment->kelurahan->kelurahan }}</td>
+                </tr>
+                <tr>
+                    <td style="text-transform: capitalize">Kecamatan</td>
+                    <td>:</td>
+                    <td>{{ $payment->kelurahan->kecamatan->kecamatan }}</td>
+                </tr>
+                <tr>
+                    <td>Kabupaten / Kota</td>
+                    <td>:</td>
+                    <td>{{ $payment->kelurahan->kecamatan->kota->kota }}</td>
+                </tr>
+                <tr>
+                    <td>Provinsi</td>
+                    <td>:</td>
+                    <td>{{ $payment->kelurahan->kecamatan->kota->provinsi->provinsi }}</td>
+                </tr>
+            </table>
+            <p>Demikian permohonan ini kami sampaikan, atas perhatiannya kami ucapkan termikasih.</p>
+            <table style="margin-left:500px;">
+                <tr>
+                    <td style="height: 120px;">Pemohon</td>
+                </tr>
+               
+                <tr>
+                    <td style="height: 100px;">..................</td>
+                </tr>
+            </table>
         </div>
     </div>
 </body>

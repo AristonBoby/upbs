@@ -98,10 +98,11 @@ class DataPengajuan extends Component
         }
     }
     public function print()
-    {
+    {   $user = tblPengajuan::where('id',$this->idModal)->first(); 
         $id ='fffff';
         $payment = [
             'id' => $id,
+            'users'=>$user,
             'name' => 'Ajith',
             'amount' => 5000,
             'date' => date('Y-m-d'),

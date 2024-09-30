@@ -69,7 +69,7 @@
             </table>
             <p text-transform: uppercase;> Kami bermohon Untuk<br>
                 @if($payment->jenispembayaran_id == 1)
-                <b>Bahan Deseminasi</b>
+                <b>Bahan Deseminasi</b>php
                 @endif
                
             </p>  

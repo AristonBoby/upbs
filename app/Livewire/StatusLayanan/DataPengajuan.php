@@ -13,11 +13,13 @@ class DataPengajuan extends Component
     use WithPagination;
     public $pencarian ='';
     public $idModal;
+    public $kategori = '';
 
     public function render()
     {   
         $modal = tblPengajuan::where('id',$this->idModal)->get();
-        $data = tblPengajuan::whereHas('user',function($query){
+
+        $data = tblPengajuan::orWhere('status','LIKE','%'.$this->kategori.'%')->whereHas('user',function($query){
                 $query->where('name','LIKE','%'.$this->pencarian.'%')->orWhere('alamat','LIKE','%'.$this->pencarian.'%');
             })->paginate(10);
         return view('livewire.status-layanan.data-pengajuan',['datapengajuan'=>$data,'dataModal'=>$modal]);

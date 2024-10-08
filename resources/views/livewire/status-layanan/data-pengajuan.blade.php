@@ -22,8 +22,17 @@
                             </tr>
                         </thead>
                         <tbody>
+                               
                                 <div class="row mb-3">
-                                    <div class="col-md-4 offset-md-8 row">
+                                    <div class="col-md-3 offset-md-5 ">
+                                        <select class="form-control" wire:model.live='kategori'>
+                                            <option value="">-- Semua Data --</option>
+                                            <option value="0">Disetuji</option>
+                                            <option value="2">Ditolak</option>
+                                            <option value="1">Mengunggu Konfirmasi</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 row">
                                         <div class="input-group col-md-3 mb-3">
                                             <input wire:model.live='pencarian' type="text" class="form-control " placeholder="Pencarian Data ..." aria-label="Recipient's username" aria-describedby="basic-addon2">
                                             <div class="input-group-append">

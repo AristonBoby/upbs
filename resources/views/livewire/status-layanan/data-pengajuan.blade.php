@@ -24,7 +24,15 @@
                         <tbody>
                                
                                 <div class="row mb-3">
-                                    <div class="col-md-3 offset-md-5 ">
+                                    <div class="col-md-2 offset-md-4 ">
+                                        <select class="form-control" wire:model.live='user'>
+                                            <option value="">-- Semua User --</option>
+                                            <option value="0">Disetuji</option>
+                                            <option value="2">Ditolak</option>
+                                            <option value="1">Mengunggu Konfirmasi</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2  ">
                                         <select class="form-control" wire:model.live='kategori'>
                                             <option value="">-- Semua Data --</option>
                                             <option value="0">Disetuji</option>
